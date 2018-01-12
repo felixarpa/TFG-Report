@@ -1,0 +1,257 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Masters/Doctoral Thesis 
+% LaTeX Template
+% Version 2.4 (22/11/16)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Version 2.x major modifications by:
+% Vel (vel@latextemplates.com)
+%
+% This template is based on a template by:
+% Steve Gunn (http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/)
+% Sunil Patel (http://www.sunilpatel.co.uk/thesis-template/)
+%
+% Template license:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+11pt, % The default document font size, options: 10pt, 11pt, 12pt
+%oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
+%catalan,
+english,
+%spanish,
+singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
+%draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
+%nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
+%liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
+%toctotoc, % Uncomment to add the main table of contents to the table of contents
+%parskip, % Uncomment to add space between paragraphs
+%nohyperref, % Uncomment to not load the hyperref package
+headsepline, % Uncomment to get a line under the header
+%chapterinoneline, % Uncomment to place the chapter title next to the number on one line
+%consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
+]{MastersDoctoralThesis} % The class file specifying the document structure
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{eurosym}
+\usepackage{footnote}
+\usepackage{palatino} % Use the Palatino font by default
+\usepackage{babel}
+\usepackage[backend=bibtex,style=numeric,natbib=true,sorting=none]{biblatex}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{appendix}
+\usepackage{datetime}
+
+\addbibresource{example.bib} % The filename of the bibliography
+
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+\newdate{date}{10}{01}{2018}
+\date{\displaydate{date}}
+
+%----------------------------------------------------------------------------------------
+%	MARGIN SETTINGS
+%----------------------------------------------------------------------------------------
+
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	inner=2.5cm, % Inner margin
+	outer=3.8cm, % Outer margin
+	bindingoffset=.5cm, % Binding offset
+	top=1.5cm, % Top margin
+	bottom=1.5cm, % Bottom margin
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+%----------------------------------------------------------------------------------------
+%	THESIS INFORMATION
+%----------------------------------------------------------------------------------------
+
+\thesistitle{Skyscanner Heatmap} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+\supervisor{Francisco López} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
+\examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
+\degree{Computer Engineering Degree} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
+\author{Fèlix Arribas} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
+
+\def \universitysupervisor{Maria José Casañ}
+
+\keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
+\university{\href{http://www.upc.edu}{UNIVERSITAT POLITÈCNICA DE CATALUNYA (UPC) – BarcelonaTech}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+\department{\href{https://www.essi.upc.edu/}{Software Engineering and Information Systems department}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\group{\href{https://www.essi.upc.edu/}{ESSI}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
+\faculty{\href{http://www.fib.upc.edu}{FACULTAT D’INFORMÀTICA DE BARCELONA (FIB)}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
+
+\def \company{\href{https://www.skyscanner.net/}{SKYSCANNER}}
+\def \tribe{Marketplace Engine tribe}
+\def \squad{DeLorean squad}
+
+\AtBeginDocument{
+\hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
+\hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+\hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
+\hypersetup{linkcolor=black}
+}
+
+\newcolumntype{L}{>{\centering}m{0.75cm}}
+\newcolumntype{M}{m{9cm}}
+\newcolumntype{T}{m{12cm}}
+
+\newcommand\tab[1][0.75cm]{\hspace*{#1}}
+
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background}
+}
+
+\lstdefinelanguage{java}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background}
+}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+\selectlanguage{english}
+
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+\pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+\begin{center}
+
+\includegraphics[scale=0.25]{resources/logo-skyscanner.png}
+
+\includegraphics[scale=0.1]{resources/logo-upc.png} % University/department logo - uncomment to place it
+
+\vspace*{.04\textheight}
+{\scshape\LARGE \company\\ in collaboration with\\ \univname\par}\vspace{1.5cm} % University name
+\textsc{\Large Final Degree Project}\\[0.5cm] % Thesis type
+
+\HRule \\[0.4cm] % Horizontal line
+{\Huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis 
+{\large Skyskanner's data domain representation\par}\vspace{0.1cm} % Thesis title
+\HRule \\[1.5cm] % Horizontal line
+ 
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+\authorname % Author name - remove the \href bracket to remove the link
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushright} \large
+\emph{Director:} \\
+\supname % Supervisor name - remove the \href bracket to remove the link  
+\\
+\emph{University supervisor:} \\
+\universitysupervisor
+\end{flushright}
+\end{minipage}\\[3cm]
+ 
+\vfill
+
+\large \textit{A Project for the}
+\large \degreename 
+\textit{ in the}\\[0.2cm]
+\deptname\\[0.2cm]
+\facname\\[0.2cm]
+\textit{working with}\\[0.2cm]
+\squad
+\textit{ from}
+\tribe\\
+\vfill
+
+{\large \displaydate{date}}\\[4cm] % Date
+ 
+\vfill
+\end{center}
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+\addchaptertocentry{\abstractname}
+In the last century, the world has became smaller. Communications are easier and faster than fifty years ago. Back then, you could talk through a fix phone, but you were not able to send any kind of media, like photos, videos, etc. Only the latest technology of that moment was able to do that. Since the smart phone revolution in 2007 almost everyone can text messages, sending images, share live videos or almost whatever you can imagine in less than a second.
+\\\\
+But the internet, phones and communications are not the only thing that made the world smaller. Ways of traveling helped to this earth flattering too. In 1918 visiting another place was very difficult. If you wanted to go through the sea, you had to do it by boat. The fastest way to travel very far in a continent was by train, but not all places were connected with rails. Nowadays, all along with the internet revolution, anyone can travel to the other side of the world in less than a day by plane. Even for traveling inside the same country people use planes.
+\\\\
+Is the air industry as efficient as it could? Are all airplane users satisfied with their purchases and possibilities? \textit{Skyscanner} provides an easy to use tool to search cheap flights from any airport to another. Sadly, user does not always find what he/she wants, not because \textit{Skyscanner} does not provide all the information. Some routes between two airports do not exists, even people search for them a lot. Some flights are too busy and very expensive.
+\\\\
+This project wants to help solving this problem providing a heat map to explore differences and similarities between what users search, finds and actually buys and what airlines provides. Being able to compare between specific dates to guess user behavior; compare two airports or cities to invest in airports that are growing faster and have more future expectations, etc.
+\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents
+
+\mainmatter
+
+\pagestyle{thesis}
+
+\include{chapters/chapter01}
+\include{chapters/chapter02}
+\include{chapters/chapter03}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\printbibliography[heading=bibintoc]
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+
+% Include the appendices of the thesis as separate files from the Appendices folder
+% Uncomment the lines as you write the Appendices
+
+%\include{appendices/AppendixA}
+
+\end{document} 

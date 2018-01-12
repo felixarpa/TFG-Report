@@ -1,0 +1,36 @@
+# Report structure
+
+- Abstract
+- Introduction
+    - Context
+        - Economy
+        - Evolution
+        - Complexity
+    - Motivation
+    - Vision (?)
+- Market status
+- Project Scope
+    - Objectives
+    - Scope
+        - Data warehouse
+        - Visual representation
+        - Other applications
+    - Risks
+    - Methodology
+        - Tribes and Squads
+        - Agile
+        - GitLab
+        - Jira
+        - Other tools
+- Requirements analysis
+    - Actors
+        - Product Owner
+        - Squad Lead
+        - DeLorean squad
+        - Other squads
+        - Providers
+        - Competitors
+    - Functional requirements
+    - Non functional requirements
+    - Use cases
+        - ...
