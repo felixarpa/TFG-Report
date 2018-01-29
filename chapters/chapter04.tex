@@ -8,17 +8,33 @@
 
 Initially it seemed difficult to find stakeholders and actors in these project apart from the providers. It is not a tool for the user of \company\, so, as explained before, one risk of these project was not finding enough support.
 \\\\
-After walking with the Squad Lead and then the Product Own of \squad\ a lot of stakeholders appeared: DeLorean Squad, Marketing Automation Squad, State Machine Squad, etc. Each of these stakeholders has different use cases and the project became very interesting for a considerable part of \company\.
+After walking with the Squad Lead and then the Product Own of \squad\ a lot of stakeholders appeared: DeLorean Squad, Marketing Automation Squad, State Machine Squad, etc. Each of these stakeholders has different use cases and the project became very interesting for a considerable part of \company\ .
+
+\subsection{DeLorean Squad}
+
+The mission of \squad\ is to provide the best data and services around the routes, timetables and modes of transportation to go from one point on Earth to another.
+\\\\
+Right now, \squad\ provides a very fast service that serves flights logistic information between a given origin and destination. Some information you can find in a route is the fight number, carriers, stops, date ranges, etc. These flights are just \textbf{single ticket flights}. We are currently working on more complex routes, constructed routes\footnote{Contructed Timetable contains constructed routes, routes composed by two or more single ticket flights. }.
+\\\\
+The constructed routes timetable is under construction, so will not be available for these project. The Heatmap will rely on the timetable of single flight number service, also known as Timetable SFN Service.
+
+\subsubsection{Timetable SFN Service}
+
+The \textit{timetable SFN} endpoint returns details for time tabled Single Flight Number itineraries series. Note that SFNs are not ticket-able, so they do not include itineraries which cannot be bought on their own, neither the price nor restrictions.
+\\\\
+Timetable SFN Service will provide all the \textbf{current} flights. This might be a little bit of a problem when trying to get past routes: Timetable SFN Service does not provide past flights information, it is always \textbf{up-to-date}. In order to get this data we have to go one step back in the whole DeLorean's data processing: Timetable Ingest Pipeline.
+
+\subsubsection{Timetable Ingest}
+
+This phase, basically collects all the OAG\footnote{OAG file (also know as WTF file), is a CSV\cite{csv} file} from a provider and maps it into routes in JSON\cite{json} format. For each different version of the OAG file, the pipeline creates a 
 
 \subsection{Product Owner}
 
-\textbf{Jen Agerton} is the Product Owner of DeLorean Squad...
+\textbf{Jen Agerton} is the Product Owner of DeLorean Squad, 
 
 \subsection{Squad Lead}
 
-\textbf{\supervisor\}, who is also the supervisor of this project,...
-
-\subsection{DeLorean Squad}
+\textbf{Francisco López}, who is also the supervisor of this project, and I has the initial idea for this project. He oriented it for a Machine Learning purpose.
 
 \subsection{Other Squads}
 
