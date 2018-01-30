@@ -14,29 +14,55 @@ After walking with the Squad Lead and then the Product Own of \squad\ a lot of s
 
 The mission of \squad\ is to provide the best data and services around the routes, timetables and modes of transportation to go from one point on Earth to another.
 \\\\
-Right now, \squad\ provides a very fast service that serves flights logistic information between a given origin and destination. Some information you can find in a route is the fight number, carriers, stops, date ranges, etc. These flights are just \textbf{single ticket flights}. We are currently working on more complex routes, constructed routes\footnote{Contructed Timetable contains constructed routes, routes composed by two or more single ticket flights. }.
+Right now, \squad\ provides a very fast service that serves flights logistic information between a given origin and destination. Some information you can find in a route is the fight number, carriers, stops, date ranges, etc. These flights are just \textbf{single ticket flights}. The squad is currently working on more complex routes, constructed routes\footnote{Contructed Timetable contains constructed routes, routes composed by two or more single ticket flights.}.
 \\\\
-The constructed routes timetable is under construction, so will not be available for these project. The Heatmap will rely on the timetable of single flight number service, also known as Timetable SFN Service.
+The constructed routes timetable is under construction, so is not available for these project. The Heatmap relies on the timetable of Single Flight Number service, also known as Timetable SFN Service.
 
 \subsubsection{Timetable SFN Service}
 
 The \textit{timetable SFN} endpoint returns details for time tabled Single Flight Number itineraries series. Note that SFNs are not ticket-able, so they do not include itineraries which cannot be bought on their own, neither the price nor restrictions.
 \\\\
-Timetable SFN Service will provide all the \textbf{current} flights. This might be a little bit of a problem when trying to get past routes: Timetable SFN Service does not provide past flights information, it is always \textbf{up-to-date}. In order to get this data we have to go one step back in the whole DeLorean's data processing: Timetable Ingest Pipeline.
+Timetable SFN Service provides all the \textbf{current} flights. This is a little bit of a problem when trying to get past routes: Timetable SFN Service does not provide past flights information, it is always \textbf{up-to-date}. In order to get this data it is needed to go one step back in the whole DeLorean data processing: Timetable Ingest Pipeline.
+\\\\
+Tech specifications of Timetable SFN Services are explined in section %\ref{$LABEL}.
 
 \subsubsection{Timetable Ingest}
 
-This phase, basically collects all the OAG\footnote{OAG file (also know as WTF file), is a CSV\cite{csv} file} from a provider and maps it into routes in JSON\cite{json} format. For each different version of the OAG file, the pipeline creates a 
+This phase, basically collects all the OAG\footnote{OAG file (also know as WTF file), is a CSV\cite{csv} file which each row represents a timetable for a Single Flight Number.} from a provider and maps it into routes in JSON\cite{json} format. For each different version of the OAG file, the pipeline creates a new file with all the routes.
+\\\\
+Then, in order to get past routes, the heatmap reference in old versions of the file created by the Timetable Ingest Pipeline.
+\\\\
+Tech specifications of Timetable Ingest Pipeline are explined in section %\ref{$LABEL}.
 
-\subsection{Product Owner}
+\subsection{Product Owner} \label{product_owner}
 
 \textbf{Jen Agerton} is the Product Owner of DeLorean Squad, 
 
-\subsection{Squad Lead}
+\subsection{DeLorean's Squad Lead}
 
 \textbf{Francisco López}, who is also the supervisor of this project, and I has the initial idea for this project. He oriented it for a Machine Learning purpose.
 
-\subsection{Other Squads}
+\subsection{Neil Ross}
+
+Neil Ross is currently the Squad Lead of \ref{marketing_atomation_squad}, this contact was given to me from my \ref{product_owner} Jen Agerton.
+\\\\
+After some talks through Slack\cite{slack}, he forward me extracts of the email he sent when he was in RaTS Squad, regarding to their use cases. Most of the use cases have been used for this project.
+
+\subsubsection{Fuel RaTS Squad}
+
+Routes and Timetable Servies Squad provides the best data and services around the routes, timetables and modes of transportation to go from one point on Earth to another. Fuel RaTS has the same mission as DeLorean Squad, but develop different services. Since Fuel RaTS provides basic routes data, pricing, live update information and multi-destination combinationcs, \squad\ provides a very fast service for only routes.
+
+\subsubsection{Marketing Automation squad} \label{marketing_atomation_squad}
+
+Marketing Automation squad enables scalable growth by automating workflows, and the collection of insightful data. They have three main goals:
+
+\begin{itemize}
+  \item Provide data to support decision making
+  \item Automated, data driven campaign management
+  \item Budget process automation
+\end{itemize}
+
+MAS provides fourteen 
 
 \subsection{Providers}
 
