@@ -24,11 +24,11 @@
         - Other tools
 - Requirements analysis
     - Actors
+        - DeLorean squad
         - Product Owner
         - Squad Lead
-        - DeLorean squad
-        - Other squads
-        - Providers
+        - Neil Ross and Routes squad
+        - Marketing Automation squad
         - Competitors
     - Functional requirements
     - Non functional requirements
