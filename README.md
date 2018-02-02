@@ -10,9 +10,10 @@
     - Vision (?)
 - Market status
 - Project Scope
-    - Objectives
+    - Mission
     - Scope
-        - Data warehouse
+        - Pipeline
+        - Service
         - Visual representation
         - Other applications
     - Risks
@@ -25,11 +26,11 @@
 - Requirements analysis
     - Actors
         - DeLorean squad
-        - Product Owner
-        - Squad Lead
-        - Neil Ross and Routes squad
+            - Product Owner
+            - Squad Lead
+        - Fuel RaTS Squad
         - Marketing Automation squad
-        - Competitors
+        - User
     - Functional requirements
     - Non functional requirements
     - Use cases
