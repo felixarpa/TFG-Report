@@ -8,7 +8,7 @@
 
 Initially it seemed difficult to find stakeholders and actors in these project apart from the providers. It is not a tool for the user of \company\, so, as explained before, one risk of these project was not finding enough support.
 \\\\
-After walking with the Squad Lead and then the Product Own of \squad\ a lot of stakeholders appeared: DeLorean Squad, Marketing Automation Squad, State Machine Squad, etc. Each of these stakeholders has different use cases and the project became very interesting for a considerable part of \company\ .
+After walking with the Squad Lead and then the Product Own of \squad\ a lot of stakeholders appeared: DeLorean Squad, Marketing Automation Squad, Fuel RaTS Squad, etc. Each of these stakeholders has different use cases and the project became very interesting for a considerable part of \company\ .
 
 \subsection{DeLorean squad} \label{dlr}
 
@@ -16,7 +16,7 @@ The mission of \squad\ is to provide the best data and services around the route
 \\\\
 Right now, \squad\ provides a very fast service that serves flights logistic information between a given origin and destination. Some information you can find in a route is the fight number, carriers, stops, date ranges, etc. These flights are just \textbf{single ticket flights}. The squad is currently working on more complex routes, constructed routes\footnote{Contructed Timetable contains constructed routes, routes composed by two or more single ticket flights.}. The constructed routes timetable is under construction, so is not available for these project.
 \\\\
-The Heatmap relies on the timetable of Single Flight Number service, also known as \nameref{timetable_sfn_service}. This service provides all the \textbf{current} flights. This is a little bit of a problem when trying to get past routes: Timetable SFN Service does not provide past flights information, it is always \textbf{up-to-date}. In order to get this data it is needed to go one step back in the whole DeLorean data processing: \nameref{timetable_pipeline}.
+DeLorean's Single Flight Number service, also known as \nameref{timetable_sfn_service}, provides all the \textbf{current} flights. This is a little bit of a problem when trying to get past routes: Timetable SFN Service does not provide past flights information, it is always \textbf{up-to-date}. In order to get this data it is needed to go one step back in the whole DeLorean data processing: \nameref{timetable_pipeline}.
 \\\\
 The heatmap must reference old versions of the file created by the Timetable Pipeline to get older routes.
 
@@ -24,24 +24,19 @@ The heatmap must reference old versions of the file created by the Timetable Pip
 \subsubsection{Timetable SFN Service} \label{timetable_sfn_service}
 
 The \textit{timetable SFN} endpoint returns details for time tabled Single Flight Number itineraries series. Note that SFNs are not ticket-able, so they do not include itineraries which cannot be bought on their own, neither the price nor restrictions.
-Timetable SFN Service provides 
-\\\\
-%Tech specifications of Timetable SFN Services will be explained in \ref{sfn_tech} \nameref{sfn_tech}
 
 % move to another chapter and section
 \subsubsection{Timetable Pipeline} \label{timetable_pipeline}
 
 This phase, basically collects all the OAG\footnote{OAG file (also know as WTF file), is a CSV\cite{csv} file which each row represents a timetable for a Single Flight Number.} from a provider and maps it into routes in JSON\cite{json} format. For each different version of the OAG file, the pipeline creates a new file with all the routes.
-\\\\
-%Tech specifications of Timetable Pipeline will be explained in \ref{pipeline_tech} \nameref{pipeline_tech}
 
 \subsubsection{Product Owner} \label{product_owner}
 
-\textbf{Jen Agerton} is the Product Owner of DeLorean Squad.
+\textbf{Jen Agerton} is the Product Owner of DeLorean Squad. She found that the Heatmap is very useful for other squads like \nameref{mas} and providers (air carrier companies).
 
 \subsubsection{DeLorean's Squad Lead}
 
-\textbf{Francisco López}, who is also the supervisor of this project, and I has the initial idea for this project. He oriented it for a Machine Learning purpose.
+\textbf{Francisco López} is also the supervisor of this project. Me and \supervisor\ had the initial idea for this project. He oriented it for a Machine Learning purpose: The information that the heatmap stores is very useful for constructed routes.
 
 \subsection{Fuel RaTS squad}
 
@@ -61,6 +56,8 @@ Marketing Automation squad enables scalable growth by automating workflows, and 
 
 \subsection{User}
 
+The user of this project can change a lot in the future. Now it will be only Marketing Automation Squad developers and Skyscanner employeers. But it is oriented for 
+
 \section{Functional requirements}
 
 \section{Non functional requirements}
@@ -78,19 +75,15 @@ Marketing Automation squad enables scalable growth by automating workflows, and 
 \hline
 \textbf{Actors}                 & User \\
 \hline
-\textbf{Organzational Benefits} & General map that allows identify in a general view non profitable and most requested routes according to the offer. Guides the user to select choose the correct quety for UC1 and UC2. \\
-\hline
-\textbf{Frequency of Use}       & TBD \\
-\hline
-\textbf{Triggers}               & Home page. \\
+\textbf{Triggers}               & Loading home page \\
 \hline
 \textbf{Precondition}           & \\
 \hline
 \textbf{Postcondition}          & Wolrd heatmap with most relevant routes and their heat. \\
 \hline
-\textbf{Main Course}            & \\
+\textbf{Basic Flow}             & \\
 \hline
-\textbf{Alternate Courses}      & \\
+\textbf{Alternate Flow}         & \\
 \hline
 \textbf{Exceptions}             & \\
 \hline
@@ -110,17 +103,13 @@ Marketing Automation squad enables scalable growth by automating workflows, and 
 \hline
 \textbf{Actors}                 & User \\
 \hline
-\textbf{Organzational Benefits} & Helps users understanding which routes are \textit{over requested} and learn about tendencies. \\
-\hline
-\textbf{Frequency of Use}       & TBD \\
-\hline
 \textbf{Triggers}               & Request to get comparison of route from city A to city B in a specific date. \\
 \hline
 \textbf{Precondition}           & City A and city B exists and there is some connection (SFN or Constructed) in the date. \\
 \hline
 \textbf{Postcondition}          & Plot with the evolution through time of the user demand and air carrier offer. Time limit goes from fist offer apperance to arrival date or current date, depending which comes first. \\
 \hline
-\textbf{Main Course}            & 1. System provides a list of cities under \textit{origin} tag. \\
+\textbf{Basic Flow}             & 1. System provides a list of cities under \textit{origin} tag. \\
                                 & 2. User selects an origin city. \\
                                 & 3. System provides another list of cities. Now with \textit{destination} tag. \\
                                 & 4. User selects destination (See exception 1). \\
@@ -128,13 +117,13 @@ Marketing Automation squad enables scalable growth by automating workflows, and 
                                 & 6. User selects a date of the calendar (See exception 2). \\
                                 & 7. System provides the plot of the demand and offer evolution of the route. \\
 \hline
-\textbf{Alternate Courses}      & Alternate course 1 \\
+\textbf{Alternate Flow}         & Alternate course 1 \\
                                 & 1. User \textbf{changes} destination city (See exception 1). \\
-                                & 2. Return to Main Course step 6. \\
+                                & 2. Return to basic flow step 6. \\
                                 & \\
                                 & Alternate course 2 \\
                                 & 1. User \textbf{changes} date (See exception 2). \\
-                                & 2. Return to Main Course step 7. \\
+                                & 2. Return to basic flow step 7. \\
 \hline
 \textbf{Exceptions}             & 1. There are no connections between to given cities. \\
                                 & 2. There are connections between to given cities, but not in the given date. \\
@@ -155,22 +144,17 @@ Marketing Automation squad enables scalable growth by automating workflows, and 
 \hline
 \textbf{Actors}                 & \nameref{mas}, \nameref{dlr} \\
 \hline
-\textbf{Organzational Benefits} & With the data provided \nameref{mas} could be able to create alerts to warn them of notable changes in user demand \\
-                                & \nameref{dlr} may be able to use this data as training in future Machine Learnings algorithms applied to Constructed Routes Pipeline \\
-\hline
-\textbf{Frequency of Use}       & TBD \\
-\hline
 \textbf{Triggers}               & Request to get data set of route from city A to city B in a specific date. \\
 \hline
 \textbf{Precondition}           & City A and city B exists and there is some connection (SFN or Constructed) in the date \\
 \hline
 \textbf{Postcondition}          & Plot with the evolution through time of the user demand and air carrier offer. Time limit goes from fist offer apperance to arrival date or current date, depending which comes first. \\
 \hline
-\textbf{Main Course}            & 1. System provides an HTTP endpoint to request data. \\
+\textbf{Basic Flow}             & 1. System provides an HTTP endpoint to request data. \\
                                 & 2. The developer does a GET request to the endpoint with an origin, destination and a date (See exception 1). \\
                                 & 3. System provides a data set in JSON format with all the demand and offers of the entity. \\
 \hline
-\textbf{Alternate Courses}      & \\
+\textbf{Alternate Flow}         & \\
 \hline
 \textbf{Exceptions}             & 1. There no connections between city A and city B in the given date. \\
 \hline
@@ -200,9 +184,9 @@ Marketing Automation squad enables scalable growth by automating workflows, and 
 \hline
 \textbf{Postcondition}          & post \\
 \hline
-\textbf{Main Course}            & main \\
+\textbf{Basic Flow}             & main \\
 \hline
-\textbf{Alternate Courses}      & alt \\
+\textbf{Alternate Flow}         & alt \\
 \hline
 \textbf{Exceptions}             & exc \\
 \hline
