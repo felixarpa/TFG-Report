@@ -23,3 +23,142 @@ This phase, basically collects all the OAG\footnote{OAG file (also know as WTF f
 
 %----------------------------------------------------------------
 %----------------------------------------------------------------
+
+\section{Functional requirements}
+
+\section{Non functional requirements}
+
+\section{Use cases}
+
+\begin{table}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{10cm}|}
+\hline
+\textbf{Name}                   & Routes offer and demand comparison \textbf{heatmap} \\
+\hline
+\textbf{ID}                     & UC0 \\
+\hline
+\textbf{Description}            & Heatmap of the comparison between providers offer and user demand. The heat is represented by the \textit{over requests} of a route. \\
+\hline
+\textbf{Actors}                 & User \\
+\hline
+\textbf{Triggers}               & Loading home page \\
+\hline
+\textbf{Precondition}           & \\
+\hline
+\textbf{Postcondition}          & Wolrd heatmap with most relevant routes and their heat. \\
+\hline
+\textbf{Basic Flow}             & \\
+\hline
+\textbf{Alternate Flow}         & \\
+\hline
+\textbf{Exceptions}             & \\
+\hline
+\end{tabular}
+\caption{\textit{Routes offer and demand comparison \textbf{heatmap}} use case}
+\label{UC0}
+\end{table}
+
+\begin{table}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{10cm}|}
+\hline
+\textbf{Name}                   & Offer and demand plot of route \\
+\hline
+\textbf{ID}                     & UC1 \\
+\hline
+\textbf{Description}            & Compare the user demand and the providers offer of a specific route from city A to city B in a given date in a plot with two data sets, offer and demand. \\
+\hline
+\textbf{Actors}                 & User \\
+\hline
+\textbf{Triggers}               & Request to get comparison of route from city A to city B in a specific date. \\
+\hline
+\textbf{Precondition}           & City A and city B exists and there is some connection (SFN or Constructed) in the date. \\
+\hline
+\textbf{Postcondition}          & Plot with the evolution through time of the user demand and air carrier offer. Time limit goes from fist offer apperance to arrival date or current date, depending which comes first. \\
+\hline
+\textbf{Basic Flow}             & 1. System provides a list of cities under \textit{origin} tag. \\
+                                & 2. User selects an origin city. \\
+                                & 3. System provides another list of cities. Now with \textit{destination} tag. \\
+                                & 4. User selects destination (See exception 1). \\
+                                & 5. System provides an interactive calendar. \\
+                                & 6. User selects a date of the calendar (See exception 2). \\
+                                & 7. System provides the plot of the demand and offer evolution of the route. \\
+\hline
+\textbf{Alternate Flow}         & Alternate course 1 \\
+                                & 1. User \textbf{changes} destination city (See exception 1). \\
+                                & 2. Return to basic flow step 6. \\
+                                & \\
+                                & Alternate course 2 \\
+                                & 1. User \textbf{changes} date (See exception 2). \\
+                                & 2. Return to basic flow step 7. \\
+\hline
+\textbf{Exceptions}             & 1. There are no connections between to given cities. \\
+                                & 2. There are connections between to given cities, but not in the given date. \\
+\hline
+\end{tabular}
+\caption{\textit{Offer and demand plot of route} use case}
+\label{UC1}
+\end{table}
+
+\begin{table}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{10cm}|}
+\hline
+\textbf{Name}                   & Offer and demand data set of route \\
+\hline
+\textbf{ID}                     & UC2 \\
+\hline
+\textbf{Description}            & Data set of the evolution of the user demand and providers offer in order to create metrics, alerts, etc. \\
+\hline
+\textbf{Actors}                 & \nameref{mas}, \nameref{dlr} \\
+\hline
+\textbf{Triggers}               & Request to get data set of route from city A to city B in a specific date. \\
+\hline
+\textbf{Precondition}           & City A and city B exists and there is some connection (SFN or Constructed) in the date \\
+\hline
+\textbf{Postcondition}          & Plot with the evolution through time of the user demand and air carrier offer. Time limit goes from fist offer apperance to arrival date or current date, depending which comes first. \\
+\hline
+\textbf{Basic Flow}             & 1. System provides an HTTP endpoint to request data. \\
+                                & 2. The developer does a GET request to the endpoint with an origin, destination and a date (See exception 1). \\
+                                & 3. System provides a data set in JSON format with all the demand and offers of the entity. \\
+\hline
+\textbf{Alternate Flow}         & \\
+\hline
+\textbf{Exceptions}             & 1. There no connections between city A and city B in the given date. \\
+\hline
+\end{tabular}
+\caption{\textit{Offer and demand data set of route} use case}
+\label{UC2}
+\end{table}
+
+\begin{table}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{10cm}|}
+\hline
+\textbf{Name}                   & name \\
+\hline
+\textbf{ID}                     & id \\
+\hline
+\textbf{Description}            & description \\
+\hline
+\textbf{Actors}                 & actors \\
+\hline
+\textbf{Organzational Benefits} & benefits \\
+\hline
+\textbf{Frequency of Use}       & frequency \\
+\hline
+\textbf{Triggers}               & trigger \\
+\hline
+\textbf{Precondition}           & pre \\
+\hline
+\textbf{Postcondition}          & post \\
+\hline
+\textbf{Basic Flow}             & main \\
+\hline
+\textbf{Alternate Flow}         & alt \\
+\hline
+\textbf{Exceptions}             & exc \\
+\hline
+\end{tabular}
+\caption{\textit{title} use case}
+\label{id}
+\end{table}
+
+% ...
