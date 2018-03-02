@@ -4,7 +4,7 @@
 
 \label{chapter04}
 
-\section{Actors}
+\section{Stakeholders} \label{stakeholders}
 
 Initially it seemed difficult to find stakeholders and actors in these project apart from the providers. It is not a tool for the user of \company\, so, as explained before, one risk of these project was not finding enough support.
 \\\\
@@ -12,29 +12,25 @@ After walking with the Squad Lead and then the Product Own of \squad\ a lot of s
 
 \subsection{DeLorean squad} \label{dlr}
 
-The mission of \squad\ is to provide the best data and services around the routes, timetables and modes of transportation to go from one point on Earth to another.
-\\\\
-Right now, \squad\ provides a very fast service that serves flights logistic information between a given origin and destination. Some information you can find in a route is the fight number, carriers, stops, date ranges, etc. These flights are just \textbf{single ticket flights}. The squad is currently working on more complex routes, constructed routes\footnote{Contructed Timetable contains constructed routes, routes composed by two or more single ticket flights.}. The constructed routes timetable is under construction, so is not available for these project.
-\\\\
-DeLorean's Single Flight Number service, also known as \nameref{timetable_sfn_service}, provides all the \textbf{current} flights. This is a little bit of a problem when trying to get past routes: Timetable SFN Service does not provide past flights information, it is always \textbf{up-to-date}. In order to get this data it is needed to go one step back in the whole DeLorean data processing: \nameref{timetable_pipeline}.
+DeLorean's Single Flight Number service, also known as \textit{\nameref{timetable_sfn_service}}, provides all the \textbf{current} flights. This is a little bit of a problem when trying to get past routes: Timetable SFN Service does not provide past flights information, it is always \textbf{up-to-date}. In order to get this data it is needed to go one step back in the whole DeLorean data processing: \textit{\nameref{timetable_pipeline}}.
 \\\\
 The heatmap must reference old versions of the file created by the Timetable Pipeline to get older routes.
 
 % move to another chapter and section
-\subsubsection{Timetable SFN Service} \label{timetable_sfn_service}
+\subsubsection*{Timetable SFN Service} \label{timetable_sfn_service}
 
 The \textit{timetable SFN} endpoint returns details for time tabled Single Flight Number itineraries series. Note that SFNs are not ticket-able, so they do not include itineraries which cannot be bought on their own, neither the price nor restrictions.
 
 % move to another chapter and section
-\subsubsection{Timetable Pipeline} \label{timetable_pipeline}
+\subsubsection*{Timetable Pipeline} \label{timetable_pipeline}
 
 This phase, basically collects all the OAG\footnote{OAG file (also know as WTF file), is a CSV\cite{csv} file which each row represents a timetable for a Single Flight Number.} from a provider and maps it into routes in JSON\cite{json} format. For each different version of the OAG file, the pipeline creates a new file with all the routes.
 
-\subsubsection{Product Owner} \label{product_owner}
+\subsubsection*{Product Owner} \label{product_owner}
 
 \textbf{Jen Agerton} is the Product Owner of DeLorean Squad. She found that the Heatmap is very useful for other squads like \nameref{mas} and providers (air carrier companies).
 
-\subsubsection{DeLorean's Squad Lead}
+\subsubsection*{DeLorean's Squad Lead}
 
 \textbf{Francisco López} is also the supervisor of this project. Me and \supervisor\ had the initial idea for this project. He oriented it for a Machine Learning purpose: The information that the heatmap stores is very useful for constructed routes.
 

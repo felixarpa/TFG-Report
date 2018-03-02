@@ -80,7 +80,7 @@ Simple chart with the comparison between providers offer and user demand of the 
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.3]{resources/stacked-chart-example01.png}
+\includegraphics[scale=0.4]{resources/stacked-chart-example01.png}
 \caption{Chart mock-up. One color goes for Providers Offer and the other one for User Demand.}
 \end{figure}
 
@@ -116,15 +116,7 @@ The user does not search flights for a given route in a given date. It sets the 
 
 \subsection{Amount of data}
 
-As explained before in the \nameref{problem}, there is a very big amount of data that need to be mapped\footnote{Simple approximation for one year:
-\\
-62 thousand routes per week, around 20\% of those routes are new or changed from previous version, this is $62000+12400\times 52 weeks = 706800$ records per year.
-\\
-In the other hand we have 4 million users every day, supposing the 75\% of them do one simple query (origin, destination and date): $4000000\times365=1460000000$ records.
-\\
-With a simple data model such as origin (Integer, 4 bytes), destination (Integer, 4 bytes) and date (Float, 4 bytes), each record could take 12 Bytes.
-\\
-$(4000000\times365+706800)\times12 Bytes = 17528481600 Bytes = \textbf{17.5 TB}$}. Luckily, \company\ have great cloud machines and (almost) unlimited space. But stills an issue to be aware of.
+As explained before in the \nameref{problem}, there is a very big amount of data that need to be mapped. Luckily, \company\ have great cloud machines and (almost) unlimited space. But stills an issue to be aware of.
 
 \subsection{Web UI}
 
@@ -136,36 +128,44 @@ Creating the interactive map and graphics of the proposed website from zero is a
 
 \section{Methodology and rigor}
 
-\subsection{\company\ structure} \label{company_structure}
-
-\company\ has a very horizontal structure, based on Spotify's\cite{culture_of_growth}.
-\\\\
-In the top of the company's hierarchy there is Gareth Williams (CEO and Co-founder). Just bellow the rest of CxOs: CCO, CTO, CPO, CFO, CLO and the Senior Executive Assistant. Then vice presidents, senior managers, managers and then developers and interns\cite{crew_chart}.
-\\\\
-Apart from this hierarchy structure, the whole team, except the CEO, CxOs and the Senior Executive Assistant, is mainly split in \textbf{Squads}, each of those belong to a \textbf{Tribes}. Apart from Squads and Tribes there are also Chapters, Guilds ans XBT'S\cite{how_skyscanner_works}.
-
-\subsubsection*{Squad}
-
-Are independent teams of no more than 8 people that are focused on delivering a core mission. Each squad has the freedom to act and be accountable to its mission.
-
-\subsubsection*{Tribe}
-
-Squads belong to a Tribe. The tribe will have an aligning mission linking to each squad's mission and is only achievable depending on the success of each squad. The Tribe lead is responsible for providing the right environment to deliver and providing direction. 
-
-\subsubsection*{Chapters}
-
-Are people who do similar work. This is a secondary home, and how people are line managed. Chapter leads are responsible for developing people and in tribe practices.
-
-\subsubsection*{Guilds}
-
-Are communities of interest of people who do not necessarily do similar work. It is people from across the business that want to share knowledge, tools, and word practices. 
-
-\subsubsection*{XBT'S (cross business teams)}
-
-XBTS' provide a platform to help solve business problems or opportunities with no natural home while giving all employees the ability to make an impact across any area of \company.
-
 \subsection{Extreme Programming}
 
-This project will be developed along with \squad's work. DeLorean is following Scrum, an agile methodology. After come research and some discussions with the rest of the team, Extreme Programming was the best option.
+This project will be developed along with \squad's work. This squad is following Scrum, an agile methodology. After come research and some discussions with the rest of the team, Extreme Programming\cite{xp} showed up as the best option.
+\\\\
+XP is a style of software development focused in excellent applications, programming techniques, clear communication, etc. To accomplish that, XP includes a philosophy of software development, body of practices, complementary principles and a community that shares these values.
+\\\\
+This methodology works with short development cycles, resulting in early, concrete and continuing feedback. Has an incremental approach, making way to a flexible schedule of the implementation. It relies in oral communication and tests to reach the goal of the project.
+\\\\
+The original Extreme Programming methodology is for teams of developers, but this project will be only developed by myself, so the original idea has been modified a little bit. The pair programming and pair negotiation has been removed because I have nobody to pair with.
 
-\subsection{Git}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.2]{diagrams/extreme_programming.png}
+\caption{Extreme programming planning loops.}
+\end{figure}
+
+\subsection{GitLab}
+
+This platform will be the main tool for version control of the source code and issue tracking of different tasks.
+
+\subsubsection*{\texttt{git}}
+
+All code projects (pipelines, service and website) will be stored in my personal projects space in \company's GitLab domain. Tasks and issue projects will be related to each project.
+\\\\
+Using \texttt{git}, the versions will be forked in branches, each branch will stand for an specific issue. \textit{Master} will be the main branch where the latest production version will be.
+
+\subsubsection*{Tasks and issues}
+
+The \textbf{issue tracking} will be very helpful in order to monitor the evolution of the project. Issues will be composed by a title, description, milestone, labels (if needed), due date and weight, and represents a new functionality. In order to know the status, issues will be listed in three columns:
+
+\paragraph*{Backlog:}
+
+Known tasks that haven been started yet. Could be a well defined task, with a very clear description, due date and weight, or just a draft.
+
+\paragraph*{WIP:}
+
+Work in Progress. The task is being considered, developed or tested.
+
+\paragraph*{Done:}
+
+Tasks finished, tested and done. Ready for production.

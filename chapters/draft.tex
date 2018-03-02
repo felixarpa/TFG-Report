@@ -1,0 +1,25 @@
+Simple approximation for one year:
+\\
+62 thousand routes per week, around 20\% of those routes are new or changed from previous version, this is $62000+12400\times52weeks=706800$ records per year.
+\\
+In the other hand we have 4 million users every day, supposing the 75\% of them do one simple query (origin, destination and date): $4000000\times365=1460000000$ records.
+\\
+With a simple data model such as origin (Integer, 4 bytes), destination (Integer, 4 bytes) and date (Float, 4 bytes), each record could take 12 Bytes.
+\\
+$(4000000\times365+706800)\times12 Bytes = 17528481600 Bytes = \textbf{17.5 TB}$
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------
+
+% move to another chapter and section
+\subsubsection*{Timetable SFN Service} \label{timetable_sfn_service}
+
+The \textit{timetable SFN} endpoint returns details for time tabled Single Flight Number itineraries series. Note that SFNs are not ticket-able, so they do not include itineraries which cannot be bought on their own, neither the price nor restrictions.
+
+% move to another chapter and section
+\subsubsection*{Timetable Pipeline} \label{timetable_pipeline}
+
+This phase, basically collects all the OAG\footnote{OAG file (also know as WTF file), is a CSV\cite{csv} file which each row represents a timetable for a Single Flight Number.} from a provider and maps it into routes in JSON\cite{json} format. For each different version of the OAG file, the pipeline creates a new file with all the routes.
+
+%----------------------------------------------------------------
+%----------------------------------------------------------------

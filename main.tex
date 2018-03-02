@@ -71,7 +71,7 @@ headsepline, % Uncomment to get a line under the header
 \geometry{
 	paper=a4paper, % Change to letterpaper for US letter
 	inner=2.5cm, % Inner margin
-	outer=3.8cm, % Outer margin
+	outer=3cm, % Outer margin
 	bindingoffset=.5cm, % Binding offset
 	top=1.5cm, % Top margin
 	bottom=1.5cm, % Bottom margin
@@ -154,7 +154,7 @@ headsepline, % Uncomment to get a line under the header
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
 
 %----------------------------------------------------------------------------------------
-%	TITLE PAGE
+%	TITLE
 %----------------------------------------------------------------------------------------
 
 \begin{titlepage}
@@ -209,7 +209,7 @@ headsepline, % Uncomment to get a line under the header
 \end{titlepage}
 
 %----------------------------------------------------------------------------------------
-%	ABSTRACT PAGE
+%	ABSTRACT
 %----------------------------------------------------------------------------------------
 
 \begin{abstract}
@@ -224,13 +224,13 @@ This project wants to help solving this problem, providing a HeatMap to explore 
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
-%	THESIS CONTENT - CHAPTERS
+%	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
 \tableofcontents
 
 %----------------------------------------------------------------------------------------
-%   CONTENT
+%   THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
 
 \mainmatter
@@ -243,12 +243,6 @@ This project wants to help solving this problem, providing a HeatMap to explore 
 \include{chapters/chapter04}
 
 %----------------------------------------------------------------------------------------
-%	BIBLIOGRAPHY
-%----------------------------------------------------------------------------------------
-
-\printbibliography[heading=bibintoc]
-
-%----------------------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
@@ -259,6 +253,12 @@ This project wants to help solving this problem, providing a HeatMap to explore 
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-%\include{appendices/AppendixA}
+\include{appendices/appendixA}
+
+%----------------------------------------------------------------------------------------
+%   BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\printbibliography[heading=bibintoc]
 
 \end{document} 
