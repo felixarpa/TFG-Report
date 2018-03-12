@@ -10,7 +10,9 @@
 
 \section{Formulation of the problem} \label{problem}
 
-In any team of \company, user queries and providers' data is compared in order to guess valuable trends.
+The main goal of this project is creating a tool for \textit{\company} to ease the routes and airports comparison by different parameters, taking into account values like \textbf{user demand} and \textbf{flights provided} by airlines.
+\\\\
+In any team of \company, user queries and providers data is compared in order to guess valuable trends.
 \\\\
 Found that gap, a bunch of new ideas appeared. After some talks with product owners of different squads and some senior engineers, a promising idea showed up:
 \\\\
@@ -34,7 +36,7 @@ Provide a \textbf{visual tool} to find routes and airports with much \textbf{mor
 \section{Scope}
 
 Merging both data sources (providers and users) generates a lot of new valuable data with a lot of different application: From simply selling it to providers, to complex deep learning systems.
-\\\\
+\\
 The final goal of this project is displaying the comparison in a simple Web UI for Marketing squads or tribes. This can be split in three smaller goals or components:
 
 \subsection{Pipeline}
@@ -51,9 +53,7 @@ Simple HTTP Service with a basic Application Programming Interface to serve Pipe
 
 \subsection{Visual representation} \label{visual_representation}
 
-Website with a visual representation of the data. There are plenty of ways to draw charts and maps visualizations.
-\\\\
-The Web UI will be composed by three main pages:
+Website with a visual representation of the data. There are plenty of ways to draw charts and maps visualizations. The Web UI will be composed by three main pages:
 
 \subsubsection*{World Map}
 
@@ -63,8 +63,8 @@ The Heatmap user will be able to select an airport, set a date and go to \namere
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.25]{resources/us-map-example01.png}
-\caption{Example of the world map style. Only displaying the US make it look clearer.}
+\includegraphics[scale=0.2]{resources/us-map-example01.png}
+\caption{Example of the world map style. Only displaying the US to make it look clearer.}
 \end{figure}
 
 \subsubsection*{Browser} \label{browser}
@@ -129,7 +129,7 @@ Creating the interactive map and plots for the proposed website from zero, is a 
 
 \subsection{Extreme Programming}
 
-This project will be developed along with \squad's work. This squad is following Scrum, an agile methodology. After some research and discussions with the rest of the team, Extreme Programming (XP)\cite{xp} showed up as the best option.
+This project will be developed along with \squad's work. This squad is following Scrum, an agile methodology. After some research and discussions with the rest of the team, Extreme Programming (XP)\cite{xp} showed up as the best option. % WHY I am doing XP and not Scrum? as Skyscanner does
 \\\\
 XP is a style of software development focused in excellent applications, programming techniques and clear communication. To accomplish that, XP includes a philosophy of software development, body of practices, complementary principles and a community that shares these values.
 \\\\
@@ -139,7 +139,7 @@ The original Extreme Programming methodology is for teams of developers, but thi
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.2]{diagrams/extreme_programming.png}
+\includegraphics[scale=0.25]{diagrams/extreme_programming.png}
 \caption{Extreme programming planning loops.}
 \end{figure}
 
