@@ -1,48 +1,29 @@
-% Chapter 4: Requirements analysis
+% Chapter 4: Stakeholders
 
-\chapter{Requirements analysis}
+\chapter{Stakeholders}
 
 \label{chapter04}
 
-\section{Actors}
-
-Initially it seemed difficult to find stakeholders and actors in these project apart from the providers. It is not a tool for the user of \company\, so, as explained before, one risk of these project was not finding enough support.
+Initially it seemed difficult to find stakeholders and actors in these project apart from the providers. It is not a tool for the user of \company.
 \\\\
-After walking with the Squad Lead and then the Product Own of \squad\ a lot of stakeholders appeared: DeLorean Squad, Marketing Automation Squad, Fuel RaTS Squad, etc. Each of these stakeholders has different use cases and the project became very interesting for a considerable part of \company\ .
+After talking with the squad Lead and then the Product Own of \squad\ a lot of stakeholders appeared: DeLorean squad, Marketing Automation squad, Data tribe, etc. Each of these stakeholders has different use cases and the project became very interesting for a considerable part of \company.
 
-\subsection{DeLorean squad} \label{dlr}
+\section{DeLorean squad} \label{dlr}
 
-The mission of \squad\ is to provide the best data and services around the routes, timetables and modes of transportation to go from one point on Earth to another.
+DeLorean's Single Flight Number service, also known as \textit{Timetable SFN Service}, provides all the \textbf{current} flights. This is a little bit of a problem when trying to get historical data because Timetable SFN Service does not provide past flights information, it is always \textbf{up-to-date}. In order to get this data it is needed to go one step back in the whole DeLorean data processing: \textit{Timetable Pipeline}.
 \\\\
-Right now, \squad\ provides a very fast service that serves flights logistic information between a given origin and destination. Some information you can find in a route is the fight number, carriers, stops, date ranges, etc. These flights are just \textbf{single ticket flights}. The squad is currently working on more complex routes, constructed routes\footnote{Contructed Timetable contains constructed routes, routes composed by two or more single ticket flights.}. The constructed routes timetable is under construction, so is not available for these project.
-\\\\
-DeLorean's Single Flight Number service, also known as \nameref{timetable_sfn_service}, provides all the \textbf{current} flights. This is a little bit of a problem when trying to get past routes: Timetable SFN Service does not provide past flights information, it is always \textbf{up-to-date}. In order to get this data it is needed to go one step back in the whole DeLorean data processing: \nameref{timetable_pipeline}.
-\\\\
-The heatmap must reference old versions of the file created by the Timetable Pipeline to get older routes.
+The heatmap must look old versions of the file created by the \textit{Timetable Pipeline} to get older routes. Then, \squad\ is interested in the Heatmap because it will be using Pipeline's data.
 
-% move to another chapter and section
-\subsubsection{Timetable SFN Service} \label{timetable_sfn_service}
+\subsection*{Product Owner} \label{product_owner}
 
-The \textit{timetable SFN} endpoint returns details for time tabled Single Flight Number itineraries series. Note that SFNs are not ticket-able, so they do not include itineraries which cannot be bought on their own, neither the price nor restrictions.
+\textbf{Jen Agerton} is the Product Owner of DeLorean squad. She realized that the Heatmap is very useful for other squads like \nameref{mas} and providers (air carrier companies).
 
-% move to another chapter and section
-\subsubsection{Timetable Pipeline} \label{timetable_pipeline}
+\subsection*{DeLorean's squad Lead}
 
-This phase, basically collects all the OAG\footnote{OAG file (also know as WTF file), is a CSV\cite{csv} file which each row represents a timetable for a Single Flight Number.} from a provider and maps it into routes in JSON\cite{json} format. For each different version of the OAG file, the pipeline creates a new file with all the routes.
+\textbf{Francisco López} is also the supervisor of this project. We both had the initial idea for this project. He saw an oportunity for the future (after project's deliverment) orienting the Heatmap for Machine Learning purpose: The information that the heatmap stores is very useful for constructed routes.
 
-\subsubsection{Product Owner} \label{product_owner}
 
-\textbf{Jen Agerton} is the Product Owner of DeLorean Squad. She found that the Heatmap is very useful for other squads like \nameref{mas} and providers (air carrier companies).
-
-\subsubsection{DeLorean's Squad Lead}
-
-\textbf{Francisco López} is also the supervisor of this project. Me and \supervisor\ had the initial idea for this project. He oriented it for a Machine Learning purpose: The information that the heatmap stores is very useful for constructed routes.
-
-\subsection{Fuel RaTS squad}
-
-Routes and Timetable Servies Squad provides the best data and services around the routes, timetables and modes of transportation to go from one point on Earth to another. Fuel RaTS has the same mission as DeLorean Squad, but develop different services. Since Fuel RaTS provides basic routes data, pricing, live update information and multi-destination combinationcs, \squad\ provides a very fast service for only routes.
-
-\subsection{Marketing Automation squad} \label{mas}
+\section{Marketing Automation squad} \label{mas}
 
 Marketing Automation squad enables scalable growth by automating workflows, and the collection of insightful data. They have three main goals:
 
@@ -52,147 +33,14 @@ Marketing Automation squad enables scalable growth by automating workflows, and 
   \item Budget process automation
 \end{itemize}
 
+The Heatmap will be very useful for the first goal. The data provided by the Heatmat has high value in marketing decisions. Looking at historical data, \nameref{mas} could post an advertisement about trend routes in a specific time of the year.
 
+\section{Data tribe}
 
-\subsection{User}
+In Data tribe, State Machine squad captures the user actions, so they know where the user gets stuck or if they finally reach the prodiver of the flight. Other squads like Clan A and Clan B just gets users queries in flights, hotels and car hiring. The second data source of the Heatmap (user requests and queries) will be obtained from these squads.
 
-The user of this project can change a lot in the future. Now it will be only Marketing Automation Squad developers and Skyscanner employeers. But it is oriented for 
+\section{User}
 
-\section{Functional requirements}
-
-\section{Non functional requirements}
-
-\section{Use cases}
-
-\begin{table}
-\begin{tabular}{|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{10cm}|}
-\hline
-\textbf{Name}                   & Routes offer and demand comparison \textbf{heatmap} \\
-\hline
-\textbf{ID}                     & UC0 \\
-\hline
-\textbf{Description}            & Heatmap of the comparison between providers offer and user demand. The heat is represented by the \textit{over requests} of a route. \\
-\hline
-\textbf{Actors}                 & User \\
-\hline
-\textbf{Triggers}               & Loading home page \\
-\hline
-\textbf{Precondition}           & \\
-\hline
-\textbf{Postcondition}          & Wolrd heatmap with most relevant routes and their heat. \\
-\hline
-\textbf{Basic Flow}             & \\
-\hline
-\textbf{Alternate Flow}         & \\
-\hline
-\textbf{Exceptions}             & \\
-\hline
-\end{tabular}
-\caption{\textit{Routes offer and demand comparison \textbf{heatmap}} use case}
-\label{UC0}
-\end{table}
-
-\begin{table}
-\begin{tabular}{|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{10cm}|}
-\hline
-\textbf{Name}                   & Offer and demand plot of route \\
-\hline
-\textbf{ID}                     & UC1 \\
-\hline
-\textbf{Description}            & Compare the user demand and the providers offer of a specific route from city A to city B in a given date in a plot with two data sets, offer and demand. \\
-\hline
-\textbf{Actors}                 & User \\
-\hline
-\textbf{Triggers}               & Request to get comparison of route from city A to city B in a specific date. \\
-\hline
-\textbf{Precondition}           & City A and city B exists and there is some connection (SFN or Constructed) in the date. \\
-\hline
-\textbf{Postcondition}          & Plot with the evolution through time of the user demand and air carrier offer. Time limit goes from fist offer apperance to arrival date or current date, depending which comes first. \\
-\hline
-\textbf{Basic Flow}             & 1. System provides a list of cities under \textit{origin} tag. \\
-                                & 2. User selects an origin city. \\
-                                & 3. System provides another list of cities. Now with \textit{destination} tag. \\
-                                & 4. User selects destination (See exception 1). \\
-                                & 5. System provides an interactive calendar. \\
-                                & 6. User selects a date of the calendar (See exception 2). \\
-                                & 7. System provides the plot of the demand and offer evolution of the route. \\
-\hline
-\textbf{Alternate Flow}         & Alternate course 1 \\
-                                & 1. User \textbf{changes} destination city (See exception 1). \\
-                                & 2. Return to basic flow step 6. \\
-                                & \\
-                                & Alternate course 2 \\
-                                & 1. User \textbf{changes} date (See exception 2). \\
-                                & 2. Return to basic flow step 7. \\
-\hline
-\textbf{Exceptions}             & 1. There are no connections between to given cities. \\
-                                & 2. There are connections between to given cities, but not in the given date. \\
-\hline
-\end{tabular}
-\caption{\textit{Offer and demand plot of route} use case}
-\label{UC1}
-\end{table}
-
-\begin{table}
-\begin{tabular}{|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{10cm}|}
-\hline
-\textbf{Name}                   & Offer and demand data set of route \\
-\hline
-\textbf{ID}                     & UC2 \\
-\hline
-\textbf{Description}            & Data set of the evolution of the user demand and providers offer in order to create metrics, alerts, etc. \\
-\hline
-\textbf{Actors}                 & \nameref{mas}, \nameref{dlr} \\
-\hline
-\textbf{Triggers}               & Request to get data set of route from city A to city B in a specific date. \\
-\hline
-\textbf{Precondition}           & City A and city B exists and there is some connection (SFN or Constructed) in the date \\
-\hline
-\textbf{Postcondition}          & Plot with the evolution through time of the user demand and air carrier offer. Time limit goes from fist offer apperance to arrival date or current date, depending which comes first. \\
-\hline
-\textbf{Basic Flow}             & 1. System provides an HTTP endpoint to request data. \\
-                                & 2. The developer does a GET request to the endpoint with an origin, destination and a date (See exception 1). \\
-                                & 3. System provides a data set in JSON format with all the demand and offers of the entity. \\
-\hline
-\textbf{Alternate Flow}         & \\
-\hline
-\textbf{Exceptions}             & 1. There no connections between city A and city B in the given date. \\
-\hline
-\end{tabular}
-\caption{\textit{Offer and demand data set of route} use case}
-\label{UC2}
-\end{table}
-
-\begin{table}
-\begin{tabular}{|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{10cm}|}
-\hline
-\textbf{Name}                   & name \\
-\hline
-\textbf{ID}                     & id \\
-\hline
-\textbf{Description}            & description \\
-\hline
-\textbf{Actors}                 & actors \\
-\hline
-\textbf{Organzational Benefits} & benefits \\
-\hline
-\textbf{Frequency of Use}       & frequency \\
-\hline
-\textbf{Triggers}               & trigger \\
-\hline
-\textbf{Precondition}           & pre \\
-\hline
-\textbf{Postcondition}          & post \\
-\hline
-\textbf{Basic Flow}             & main \\
-\hline
-\textbf{Alternate Flow}         & alt \\
-\hline
-\textbf{Exceptions}             & exc \\
-\hline
-\end{tabular}
-\caption{\textit{title} use case}
-\label{id}
-\end{table}
-
-% ...
+The user of this project can change a lot in the future. Now it will be only Marketing Automation squad developers and Skyscanner employees. In the future, providers could take profit from Heatmap comparison.
+\\\\
+Companies will be able to know which of their routes or airports work better with user tendencies, they will be able to improve the flights service and make it more eficient, reducing number of flights in \textit{non-profitable} routes. They will also know which are the best places to invest looking at \textit{over-requested} airports.

@@ -24,7 +24,7 @@
 
 \documentclass[
 11pt, % The default document font size, options: 10pt, 11pt, 12pt
-%oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
+oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
 %catalan,
 english,
 %spanish,
@@ -55,12 +55,13 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{appendix}
 \usepackage{datetime}
 \usepackage{array}
+\usepackage{mathtools}
 
 \addbibresource{main.bib} % The filename of the bibliography
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
-\newdate{date}{10}{01}{2018}
+\newdate{date}{02}{03}{2018}
 \date{\displaydate{date}}
 
 %----------------------------------------------------------------------------------------
@@ -70,7 +71,7 @@ headsepline, % Uncomment to get a line under the header
 \geometry{
 	paper=a4paper, % Change to letterpaper for US letter
 	inner=2.5cm, % Inner margin
-	outer=3.8cm, % Outer margin
+	outer=3cm, % Outer margin
 	bindingoffset=.5cm, % Binding offset
 	top=1.5cm, % Top margin
 	bottom=1.5cm, % Bottom margin
@@ -153,7 +154,7 @@ headsepline, % Uncomment to get a line under the header
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
 
 %----------------------------------------------------------------------------------------
-%	TITLE PAGE
+%	TITLE
 %----------------------------------------------------------------------------------------
 
 \begin{titlepage}
@@ -169,7 +170,7 @@ headsepline, % Uncomment to get a line under the header
 
 \HRule \\[0.4cm] % Horizontal line
 {\Huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis 
-{\large Skyscanner's data domain representation\par}\vspace{0.1cm} % Thesis title
+{\large Skyscanner's data comparison\par}\vspace{0.1cm} % Thesis title
 \HRule \\[1.5cm] % Horizontal line
  
 \begin{minipage}[t]{0.4\textwidth}
@@ -208,7 +209,7 @@ headsepline, % Uncomment to get a line under the header
 \end{titlepage}
 
 %----------------------------------------------------------------------------------------
-%	ABSTRACT PAGE
+%	ABSTRACT
 %----------------------------------------------------------------------------------------
 
 \begin{abstract}
@@ -217,16 +218,20 @@ In the last century, the world has became smaller. Communications are easier and
 \\\\
 But the internet, phones and communications are not the only thing that made the world smaller. Ways of traveling helped to this earth flattering too. In 1918 visiting another place was very difficult. If you wanted to go through the sea, you had to do it by boat. The fastest way to travel very far in a continent was by train, but not all places were connected with rails. Nowadays, all along with the internet revolution, anyone can travel to the other side of the world in less than a day by plane. Even for traveling inside the same country people use planes.
 \\\\
-Is the air industry as efficient as it could? Are all airplane users satisfied with their purchases and possibilities? \company\ provides an easy to use tool to search cheap flights from any airport to another. Sadly, sometimes is difficult for users to find what they really want.
+But, is the air industry as efficient enough? Are all airlines users satisfied with their purchases and possibilities? \company\ provides an easy to use tool to search cheap flights from any airport to another. Sadly, sometimes is difficult for users to find what they really want.
 \\\\
-This project wants to help solving this problem, providing a heat map to explore differences and similarities between what users search, finds and finally buys and what airlines provides. Being able to compare between specific dates to guess user behavior.
+This project wants to help solving this problem, providing a HeatMap to explore differences and similarities between what users search and what airlines provides. Being able to compare between specific dates to guess user behavior.
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
-%	THESIS CONTENT - CHAPTERS
+%	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
 \tableofcontents
+
+%----------------------------------------------------------------------------------------
+%   THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
 
 \mainmatter
 
@@ -236,12 +241,6 @@ This project wants to help solving this problem, providing a heat map to explore
 \include{chapters/chapter02}
 \include{chapters/chapter03}
 \include{chapters/chapter04}
-
-%----------------------------------------------------------------------------------------
-%	BIBLIOGRAPHY
-%----------------------------------------------------------------------------------------
-
-\printbibliography[heading=bibintoc]
 
 %----------------------------------------------------------------------------------------
 
@@ -254,6 +253,12 @@ This project wants to help solving this problem, providing a heat map to explore
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-%\include{appendices/AppendixA}
+\include{appendices/appendixA}
+
+%----------------------------------------------------------------------------------------
+%   BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\printbibliography[heading=bibintoc]
 
 \end{document} 

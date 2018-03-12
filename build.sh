@@ -20,3 +20,5 @@ rm *.blg
 rm *-blx.aux
 rm *-blx.bib
 rm *.run.xml
+#open -a /Applications/Preview.app main.pdf
+open main.pdf
