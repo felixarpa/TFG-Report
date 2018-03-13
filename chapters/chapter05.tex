@@ -8,11 +8,9 @@ Before defining tasks and time distribution of those, it is important to remembe
 \\\\
 Even so, here is a general plan. Tasks has been \textbf{grouped regardless the technology}, for instance\cite{w3_templates}: Task 27, Home Page from the Web UI. It will have an HyperText Markup Language part only for the view and a Java Script part for getting and displaying server's data, but there is only one task for it. As explained in the previous paragraph, it is defined this way for now, in order to be agile in changes of the requirements.
 \\\\
-Tasks are grouped in \textbf{Milestones}. Used to mark specific points or goals along of a project \textit{timeline}. Milestones are very useful in order to do not losing time perception in long software projects when using Agile Methodologies, in which there are not usually to many deadlines.
+Tasks are grouped in \textbf{Milestone}. Used to mark specific points or goals along of a project \textit{timeline}. Milestone are very useful in order to do not losing time perception in long software projects when using Agile Methodologies, in which there are not usually to many deadlines.
 \\\\
-Another important thing to take into account is the \textbf{tasks overlapping}. Is a good practice\cite{clean_coder} not to work to much time in the same thing, task or goal. Swapping between different tasks and milestones can help so the developer \textbf{does not obfuscate}.
-\\\\
-Last but not least, there are two holiday weeks in March, one is \textit{Holy week} (13th), and the other is extra. That is why the project starts earlier.
+Another important thing to take into account is the \textbf{tasks overlapping}. Is a good practice\cite{clean_coder} not to work to much time in the same thing, task or goal. Swapping between different tasks and milestone can help so the developer \textbf{does not obfuscate}.
 
 %-----------------
 %   SECTION 5.1
@@ -20,11 +18,13 @@ Last but not least, there are two holiday weeks in March, one is \textit{Holy we
 
 \section{Tasks}
 
-Development tasks (from 14 to 30) duration is specified in days. Weeks are composed by five working days, so 5 days equals to a week. In a day, the developer is supposed to work five hours. From week seven to week twenty-three, there are fifteen working weeks (not counting holidays). Doing simple maths, the development will take:
+All development tasks (from number 14 to 30), is composed by small cycles where the developer will be designing, coding, testing, refactoring and deploying the software. In every task the developer will be looping through these cycles, as explained in \nameref{methodology_rigor} section.
+\\\\
+Development tasks duration is specified in days. Weeks are composed by five working days, so 5 days equals to a week. In a day, the developer is supposed to work five hours. From week seven to week twenty-three, there are fifteen working weeks (not counting holidays\footnote{There are two holiday weeks in March, one is \textit{Holy week} (13th), and the other is extra. That is why the project starts earlier.}). Doing simple maths, the development will take:
 \\
 $$15\ \textrm{weeks} \times 5\ \frac{\textrm{days}}{\textrm{week}} \times 5\ \frac{\textrm{hours}}{\textrm{day}} = 375\ \textrm{hours}$$
 \\
-\textbf{375 hours} of development.
+\textbf{375 hours} of development. Adding the small inception of the beginning and the project report in the end, 8 weeks, The whole project will take a total of \textbf{575 hours}.
 \\\\
 It is important to understand that similar tasks like 16th and 20th or 17th and 21st have different times, that is because the second time it is supposed to be very similar than the first, so there will be some previous knowledge when executing it for second time.
 
@@ -431,13 +431,13 @@ In case the project takes too much time, both pipelines can be totally overlappe
 \\\\
 The first stage of the pipelines, those are reading from their source. Then, both pipelines map the data to the desired model. Finally the pipelines write in to the service database.
 \\\\
-This will reduce the number of weeks from fifteen to \textbf{eleven weeks}. All milestone \nameref{milestones4} would be done at the same time as milestone \nameref{milestone3}.
+This will reduce the number of weeks from fifteen to \textbf{eleven weeks}. All milestone \nameref{milestone4} would be done at the same time as milestone \nameref{milestone3}.
 
 \subsection{Alternative: Service reading from Data Tribe}
 
 Another alternative, is to remove the second pipeline. It is known that in order to get all flights, data must be flattened and, then, processed. This cannot be done in the service, it would overflow its heap memory. This means that the \nameref{milestone3} cannot be removed.
 \\\\
-\nameref{milestones4} will read data from a database that has the data already flattened. It has a lot of not necessary information, but filtering from a single record is faster than exploding and consumes much \textbf{less memory}. The service could do the users search data processing.
+\nameref{milestone4} will read data from a database that has the data already flattened. It has a lot of not necessary information, but filtering from a single record is faster than exploding and consumes much \textbf{less memory}. The service could do the users search data processing.
 \\\\
 One problem is that the server latency will increase a lot. It will be reading from a very slow database for single queries (Data Tribe's database work very well when querying big amounts of data, but not small ones). Also, Data Tribe people will provably complain, because their service is not created for to much requests per second and is exactly what will happen if the services maps their data without a pipeline in the middle.
 \\\\
