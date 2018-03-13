@@ -1,9 +1,9 @@
 rm main.pdf
-xelatex main
+pdflatex main
 bibtex main
-xelatex main
-xelatex main
-xelatex main
+pdflatex main
+pdflatex main
+pdflatex main
 rm */*.aux
 rm *.aux
 rm *.blg
