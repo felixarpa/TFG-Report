@@ -6,9 +6,9 @@
 
 Before defining tasks and time distribution of those, it is important to remember that this project will be developed under an Agile Methodology, \nameref{xp}. XP attempts to reduce costs of changes in requirements and long term plans, this means that this \textit{time planning} will provably change during the development. Every week a small iteration plan will be made in order to adjust the tasks with the scope and time of the project.
 \\\\
-Even so, here is a general plan. Tasks has been \textbf{grouped regardless the technology}, for instance: Task 27, Home Page from the Web UI. It will be developed in HyperText Markup Language and Java Script, but there is only one task for it. As explained in the previous paragraph, it is defined this way for now, in order to be agile in changes of the requirements. Then, tasks are grouped in \textbf{Milestones}.
+Even so, here is a general plan. Tasks has been \textbf{grouped regardless the technology}, for instance\cite{w3_templates}: Task 27, Home Page from the Web UI. It will have an HyperText Markup Language part only for the view and a Java Script part for getting and displaying server's data, but there is only one task for it. As explained in the previous paragraph, it is defined this way for now, in order to be agile in changes of the requirements.
 \\\\
-Milestones are used to mark specific points or goals along of a project \textit{timeline}. Milestones are very useful in order to do not losing time perception in long software projects when using Agile Methodologies, in which there are not usually to many deadlines.
+Tasks are grouped in \textbf{Milestones}. Used to mark specific points or goals along of a project \textit{timeline}. Milestones are very useful in order to do not losing time perception in long software projects when using Agile Methodologies, in which there are not usually to many deadlines.
 \\\\
 Another important thing to take into account is the \textbf{tasks overlapping}. Is a good practice\cite{clean_coder} not to work to much time in the same thing, task or goal. Swapping between different tasks and milestones can help so the developer \textbf{does not obfuscate}.
 \\\\
@@ -109,7 +109,7 @@ Regard this an agile project, there has been an small inception part where the p
 
 \begin{table}[H]
 \begin{tabular}{>{\raggedleft\arraybackslash}p{3cm}>{\raggedright\arraybackslash}p{11cm}}
-\textbf{Name}        & Project management (GEP) \\
+\textbf{Name}        & Project management (GEP)\cite{rubrics_en} \\
 \textbf{Number}      & 7 \\
 \textbf{Description} & First stage in the TFG. Get thesis started. \\
 \textbf{End date}    & 20th of April, 2018 \\
@@ -413,11 +413,35 @@ Regard this an agile project, there has been an small inception part where the p
 %   SECTION 5.2
 %-----------------
 
-\section{Alternatives}
+\section{Current plan and alternatives}
 
-In case the project takes too much time, both pipelines can be totally overlapped. This will reduce the number of weeks from fifteen to eleven.
+\subsection{Current plan}
+
+In the current plan, the whole system is developed from two data layers to a presentation layer, with a domain layer in the middle. Data layer composed by \nameref{milestone3} and \nameref{milestone4}, domain layer by \nameref{milestone5} and presentation by \nameref{milestone6}.
 \\\\
-Another option is to remove the some pipeline, the server will provably have a higher latency, but it will reduce to ten or eleven weeks. 
+In this project the important part is the source of the data. So it is obvious that first of all, the data want to be obtained correctly, then we can worry about its visual representation.
+\\\\
+Then, why the \nameref{milestone3} comes before the \nameref{milestone4}? The answer is simple: \nameref{milestone3} gets data from \squad, my squad. I know how their system works and, if all initial problems are found in the beginning, the consequences will be softer.
+\\\\
+Flights offer and user searches pipelines $\longrightarrow$ \nameref{milestone5} $\longrightarrow$ \nameref{milestone6}
+
+\subsection{Alternative: Overlap pipelines}
+
+In case the project takes too much time, both pipelines can be totally overlapped. It will be possible because the process of what both pipelines do are the same but with different sources. There are \textbf{no dependencies} between them.
+\\\\
+The first stage of the pipelines, those are reading from their source. Then, both pipelines map the data to the desired model. Finally the pipelines write in to the service database.
+\\\\
+This will reduce the number of weeks from fifteen to \textbf{eleven weeks}. All milestone \nameref{milestones4} would be done at the same time as milestone \nameref{milestone3}.
+
+\subsection{Alternative: Service reading from Data Tribe}
+
+Another alternative, is to remove the second pipeline. It is known that in order to get all flights, data must be flattened and, then, processed. This cannot be done in the service, it would overflow its heap memory. This means that the \nameref{milestone3} cannot be removed.
+\\\\
+\nameref{milestones4} will read data from a database that has the data already flattened. It has a lot of not necessary information, but filtering from a single record is faster than exploding and consumes much \textbf{less memory}. The service could do the users search data processing.
+\\\\
+One problem is that the server latency will increase a lot. It will be reading from a very slow database for single queries (Data Tribe's database work very well when querying big amounts of data, but not small ones). Also, Data Tribe people will provably complain, because their service is not created for to much requests per second and is exactly what will happen if the services maps their data without a pipeline in the middle.
+\\\\
+This option reduces the development time to \textbf{ten weeks} instead of fifteen.
 
 %-----------------
 %   SECTION 5.3
@@ -425,9 +449,9 @@ Another option is to remove the some pipeline, the server will provably have a h
 
 \section{Gantt}
 
-\begin{figure}[p]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=0.175,  angle =90]{diagrams/gantt.png}
+\includegraphics[scale=0.15,  angle =90]{diagrams/gantt.png}
 \caption{Gantt diagram.}
 \end{figure}
 
