@@ -44,7 +44,7 @@ Marketplace Engine works with data \textit{from the provider to the user}. In ot
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.45]{diagrams/state-of-the-art-tribes-mp.png}
+\includegraphics[scale=0.45]{diagrams/state-of-the-art-tribes-marketplace-engine.png}
 \caption{Simple explanation of Marketplace Engine data flow.}
 \end{figure}
 
@@ -54,8 +54,8 @@ In the other hand, Data tribe has a lot of squads with services used to collect 
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.45]{diagrams/state-of-the-art-tribes-data.png}
-\caption{Simple explanation of Data tribe data flow.}
+\includegraphics[scale=0.45]{diagrams/state-of-the-art-tribes-data-tribe.png}
+\caption{Simple explanation of Data Tribe data flow.}
 \end{figure}
 
 \subsection{The gap}
@@ -64,21 +64,46 @@ There is no tribe or squad that works with both \textbf{data sources}: Providers
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.45]{diagrams/state-of-the-art-tribes-hm.png}
-\caption{First approach of the \thesistitle data flow.}
+\includegraphics[scale=0.45]{diagrams/state-of-the-art-tribes-comparison.png}
+\caption{First approach of the \thesis data flow.}
 \end{figure}
 
 %-----------------
 %   SECTION 2.3
 %-----------------
 
-\section{Resources and environment} \label{res_and_env}
+\section{Resources} \label{resources}
 
-\company is already in the air, it is working and has been working for more than ten years. In the past two years it has been migrating all their services to Amazon Web Services\cite{aws}. All developers from \company\ have access to all Amazon Web Services resources in a protected environment, Sandbox\footnote{A sandbox\cite{sandbox_wiki} is a testing environment that isolates untested code changes and outright experimentation from the production environment or repository, in the context of software development including Web development and revision control.}.
+\company\ is already in the air, it is working and has been working for more than ten years. In the past two years it has been migrating all their services to Amazon Web Services\cite{aws}.
 \\\\
-In this environment, the developer can use computing machines, storage, database, developer tools, management tools, machine learning frameworks, analytics software, etc. This project will mainly use computing machines, storage and databases.
-\\\\
-Taking into account that \company\ stores all their data in Amazon Web Services databases and the \thesistitle will be taking a part of it, we can guarantee that the storage will not run out of memory. Different project have isolated resources.
+Amazon Web Services have a lot of available different services in it for different purposes. The services that will be used or important for this projects are:
+
+\begin{itemize}
+    \item Compute
+    \begin{itemize}
+        \item Lambda
+        \item Batch
+        \item Elastic Container Service (ECS)
+    \end{itemize}
+    \item Storage and Database
+    \begin{itemize}
+        \item Simple Storage Service (S3)
+        \item Dynamic Database (DynamoDB)
+        \item Relational Database Service (RDS)
+    \end{itemize}
+    \item Analytics
+    \begin{itemize}
+        \item Athena
+        \item Elastic MapReduce (EMR)
+        \item Date Pipeline
+    \end{itemize}
+    \item Others
+    \begin{itemize}
+        \item CloudFormation (Management Tools)
+        \item API Gateway (Networking \& Content Delivery)
+        \item Simple Notification Service (Application Integration)
+    \end{itemize}
+\end{itemize}
 
 
 
