@@ -28,12 +28,12 @@ Represents a route between 2 airports and the SFNs timetable that are available 
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
 \hline
-\textbf{Field}       & \textbf{Description}                                  & \textbf{Data Type}           & \textbf{Required} & \textbf{Key} \\ \hline
-\textbf{Origin}      & The origin airport or station for the timetable       & Integer                      & Yes               & Yes          \\ \hline
-\textbf{Destination} & The destination airport or  station for the timetable & Integer                      & Yes               & Yes          \\ \hline
-\textbf{Series}      & The SFN timetables associated with the route          & List of SFN Timetable Series & Yes               & No           \\ \hline
+\textbf{Field}       & \textbf{Description}                                 & \textbf{Data Type}           & \textbf{Required} & \textbf{Key} \\ \hline
+\textbf{Origin}      & The origin airport or station for the timetable      & Integer                      & Yes               & Yes          \\ \hline
+\textbf{Destination} & The destination airport or station for the timetable & Integer                      & Yes               & Yes          \\ \hline
+\textbf{Series}      & The SFN timetables associated with the route         & List of SFN Timetable Series & Yes               & No           \\ \hline
 \end{tabular}
 \caption{Single Flight Number Route fields}
 \label{sfn-route}
@@ -45,7 +45,7 @@ Represents a SFN timetable for the year ahead.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
 \hline
 \textbf{Field}                           & \textbf{Description}                              & \textbf{Data Type}      & \textbf{Required} & \textbf{Key} \\ \hline
 \textbf{Marketing Carrier}               & The ID of the carrier that is marketing the flight & Integer                 & Yes               & Yes          \\ \hline
@@ -62,7 +62,7 @@ A Timetable Series Item represents a specific configurations of operating carrie
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
 \hline
 \textbf{Field}                           & \textbf{Description}                                                                           & \textbf{Data Type}            & \textbf{Required} & \textbf{Key} \\ \hline
 \textbf{Operating Carrier}               & The ID of the administrating operating Carrier                                                 & Integer                       & Yes               & Yes          \\ \hline
@@ -91,7 +91,7 @@ A Date Set represents a start date and day of week pattern for a given Timetable
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{5.2cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|}
 \hline
 \textbf{Field}        & \textbf{Description}                                                                                  & \textbf{Data Type}              & \textbf{Required} \\ \hline
 \textbf{Start Date}   & The start date that this set is applicable from                                                       & String (date format YYYY-MM-DD) & Yes               \\ \hline
@@ -104,7 +104,7 @@ A Date Set represents a start date and day of week pattern for a given Timetable
 
 Since the dates are represented by week days as an enumeration (\textit{mon}, \textit{tue}, \textit{wed}, ...), the grouping of flights by \textbf{day} or \textbf{month}\footnote{In version X the model changes and the pipelines group by month} becomes very difficult and non trivial. That is why the \thesis\ uses the \textbf{Unified} model.
 
-\subsection{Unified Timetable Object Model}
+\subsection{Unified Timetable Object Model} \label{unified-model}
 
 In the timetable pipeline owned by \squad\ first maps all data to Unified model then it is mapped to the final Single Flight Number Timetable model. Unified model is very similar than \nameref{sfn-model}, it uses \textbf{Airport object} instead of an integer and a set of strings in date format \texttt{YYYY-MM-DD} in date sets, availability:
 
@@ -112,12 +112,83 @@ In the timetable pipeline owned by \squad\ first maps all data to Unified model 
 \centering
 \includegraphics[scale=0.6]{diagrams/unified_model.png}
 \caption{Unified Timetables UML class diagram}
+\label{unified-uml}
 \end{figure}
 
 With this model, the \nameref{flights-offer-pipeline} can apply flattening and grouping easily into this model.
 \\\\
 Airport's code will be used to identify them and pairs of codes will represent a route. This code is also know as IATA Code\cite{iata_code}.
 
+%-----------------
+%   SECTION 5.2
+%-----------------
+
+\section{Searches model}
+
+The user searches are stored in a huge database that contains flight search, car hire search and hotel search, one has value an the other two are \texttt{null}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{diagrams/flight_search.png}
+\caption{Flight search UML class diagram}
+\end{figure}
+
+A user query in \company\ contains a lot of information, but most of it is not useful for the purpose of this project.
+
+%-----------------
+%   SECTION 5.3
+%-----------------
+
+\section{Flight Availability Model}
+
+As we can see above in the \nameref{unified-model}, flights are grouped by routes, then by flights, series and finally we reach the date. The \thesis\ will be queried by route and date, so it is important to have the flights stored and count its availability at date level.
+\\\\
+The flights availability records will be grouped by route and then by date.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{diagrams/flights_availability_model.png}
+\caption{Flights Availability UML class diagram}
+\end{figure}
+
+Flights Availability and \nameref{unified-uml} looks very similar. The main difference is that a route in Unified model contains a set of flights but a set of dates in Flight Availability.
+\\\\
+Date class contains a strings in date format \texttt{YYYY-MM-DD} and the number of available flights on that date. This last field is the same as the size of the set of flights it is composed by. The flight availability model has \textbf{a lot of duplicated values}, one flight operates a lot of dates and it is grouped by date\footnote{All flights data transformations explained in \nameref{fop-data-transformations}}.
+
+%-----------------
+%   SECTION 5.4
+%-----------------
+
+\section{User Searches Model}
+
+The user searches model has been simplified and a lot of fields from the original model has been removed. Since the amount of data of user searches increases on the order of millions per day, the model contains the basic data.
+
+\subsubsection*{User Searches Route}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\hline
+\textbf{Field}       & \textbf{Description}                         & \textbf{Data Type}     & \textbf{Required} & \textbf{Key} \\ \hline
+\textbf{Origin}      & The origin airport or station IATA code      & String                 & Yes               & Yes          \\ \hline
+\textbf{Destination} & The destination airport or station IATA code & String                 & Yes               & Yes          \\ \hline
+\textbf{Dates}       & The SFN timetables associated with the route & List of Searches Dates & Yes               & No           \\ \hline
+\end{tabular}
+\caption{User Searches Route fields}
+\end{table}
+
+\subsubsection*{Searches Date}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\hline
+\textbf{Field} & \textbf{Description}                           & \textbf{Data Type} & \textbf{Required} & \textbf{Key} \\ \hline
+\textbf{Date}  & Date for the leg that was searched             & String             & Yes               & Yes          \\ \hline
+\textbf{Count} & Number of searches for that route in that date & Integer            & Yes               & No           \\ \hline
+\end{tabular}
+\caption{Searches Date fields}
+\end{table}
 
 
 
