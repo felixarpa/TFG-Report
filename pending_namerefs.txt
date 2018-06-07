@@ -6,5 +6,12 @@ chapter02.tex
 
 chapter03.tex
     \nameref{conceptual_model}
-    pint to specification
+    point to specification
+
+chapter05.tex
+    \nameref{version_X}
+    point to version when decide to group by month
+
+    \nameref{flights-offer-pipeline}
+    point to flights offer pipeline in design
 
