@@ -1,6 +1,6 @@
-%----------------------------------
-% CHAPTER 5: Requirements analysis
-%----------------------------------
+%--------------------------
+% CHAPTER 5: Specification
+%--------------------------
 
 \chapter{Specification}
 
@@ -14,7 +14,7 @@ The data model must be also subject to change and pretty clear, to fulfill non-f
 %   SECTION 5.1
 %-----------------
 
-\section{Routes model}
+\section{Routes model} \label{routes_model}
 
 \squad's pipeline, writes the data in \textbf{Single Flight Number} model. This model is not useful for this project because of the \nameref{sfn-date-set} schema. The timetable pipeline can also write following the \textbf{unified timetable} schema, this model presents the final master set of single flight number timetables that have been merged and de-duplicated from multiple sources. Dates schema are compatible with the \thesis\ purpose.
 
@@ -22,7 +22,7 @@ The data model must be also subject to change and pretty clear, to fulfill non-f
 
 The \textbf{Single Flight Number} (SFN) timetables data schema is designed with the following object model.
 
-\subsubsection*{SFN Route}
+\subsubsection{SFN Route}
 
 Represents a route between 2 airports and the SFNs timetable that are available on that route. It is composed by three fields:
 
@@ -39,7 +39,7 @@ Represents a route between 2 airports and the SFNs timetable that are available 
 \label{sfn-route}
 \end{table}
 
-\subsubsection*{SFN Timetable Series}
+\subsubsection{SFN Timetable Series}
 
 Represents a SFN timetable for the year ahead.
 
@@ -47,7 +47,7 @@ Represents a SFN timetable for the year ahead.
 \centering
 \begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
 \hline
-\textbf{Field}                           & \textbf{Description}                              & \textbf{Data Type}      & \textbf{Required} & \textbf{Key} \\ \hline
+\textbf{Field}                           & \textbf{Description}                               & \textbf{Data Type}      & \textbf{Required} & \textbf{Key} \\ \hline
 \textbf{Marketing Carrier}               & The ID of the carrier that is marketing the flight & Integer                 & Yes               & Yes          \\ \hline
 \textbf{Marketing Carrier Flight Number} & The flight code assigned by the marketing carrier  & Integer                 & Yes               & Yes          \\ \hline
 \textbf{Series Items}                    & 1..n Series Items                                  & List of SFN Series Item & Yes               & No           \\ \hline
@@ -56,7 +56,7 @@ Represents a SFN timetable for the year ahead.
 \label{sfn-series}
 \end{table}
 
-\subsubsection*{SFN Timetable Series Item}
+\subsubsection{SFN Timetable Series Item}
 
 A Timetable Series Item represents a specific configurations of operating carrier, stops and times of day for a given SFN timetable. For example for a given Marketing Carrier / Flight Number, the Operating Carrier or times of day may change through the year.
 
@@ -81,17 +81,17 @@ A Timetable Series Item represents a specific configurations of operating carrie
 \label{sfn-series-item}
 \end{table}
 
-\subsubsection*{Traffic restrictions}
+\subsubsection{Traffic restrictions}
 
 A set of flags indicating restrictions relating to how an timetabled flight might be sold. Not relevant for this project.
 
-\subsubsection*{SFN Date Set} \label{sfn-date-set}
+\subsubsection{SFN Date Set} \label{sfn-date-set}
 
 A Date Set represents a start date and day of week pattern for a given Timetable Series Item.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{5.2cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4.7cm}|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{2cm}|}
 \hline
 \textbf{Field}        & \textbf{Description}                                                                                  & \textbf{Data Type}              & \textbf{Required} \\ \hline
 \textbf{Start Date}   & The start date that this set is applicable from                                                       & String (date format YYYY-MM-DD) & Yes               \\ \hline
@@ -115,7 +115,7 @@ In the timetable pipeline owned by \squad\ first maps all data to Unified model 
 \label{unified-uml}
 \end{figure}
 
-With this model, the \nameref{flights-offer-pipeline} can apply flattening and grouping easily into this model.
+With this model, the \nameref{flights-offer-pipeline} can apply flattening and grouping easily.
 \\\\
 Airport's code will be used to identify them and pairs of codes will represent a route. This code is also know as IATA Code\cite{iata_code}.
 
@@ -163,7 +163,7 @@ Date class contains a strings in date format \texttt{YYYY-MM-DD} and the number 
 
 The user searches model has been simplified and a lot of fields from the original model has been removed. Since the amount of data of user searches increases on the order of millions per day, the model contains the basic data.
 
-\subsubsection*{User Searches Route}
+\subsubsection{User Searches Route}
 
 \begin{table}[H]
 \centering
@@ -177,7 +177,7 @@ The user searches model has been simplified and a lot of fields from the origina
 \caption{User Searches Route fields}
 \end{table}
 
-\subsubsection*{Searches Date}
+\subsubsection{Searches Date}
 
 \begin{table}[H]
 \centering

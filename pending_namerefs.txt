@@ -1,13 +1,5 @@
 Pending namerefs:
 
-chapter02.tex
-    \nameref{aws_res}
-    should point to design > aws or maybe an apendix defining aws resources
-
-chapter03.tex
-    \nameref{conceptual_model}
-    point to specification
-
 chapter05.tex
     \nameref{version_X}
     point to version when decide to group by month

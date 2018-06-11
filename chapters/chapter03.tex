@@ -14,13 +14,13 @@ Knowing the context inside \company\ and all the state of the art of this projec
 
 \section{Formulation of the problem} \label{problem}
 
-The main goal of this project is creating a tool for \textit{\company} to ease the routes comparison with different parameters, taking into account values like \textbf{user demand} and \textbf{flights provided} by airlines.
+The main goal of this project is creating a tool for \textit{\company} to ease the routes comparison with different parameters, taking into account values like \textbf{user searches} and \textbf{flights available} by airlines.
 \\\\
 In any team of \company, user queries and providers data is compared in order to guess valuable trends.
 \\\\
 Found that gap, a bunch of new ideas appeared. After some talks with product owners of different squads and some senior engineers, a promising idea showed up:
 \\\\
-Comparison of \textbf{user demand} and \textbf{flights offered} by airlines, enabling finding \textit{over-requested} routes or airports. Those routes or airports with more user demand than offers by the providers.
+Comparison of \textbf{user searches} and \textbf{flights available} by airlines, enabling finding \textit{over-requested} routes or airports. Those routes or airports with more user demand than availability by the providers.
 \\\\
 \squad\ manages a huge amount of data: All flights planned for the next year and a half, these are more than 75 million records. The database of all user queries in the website or mobile application is even bigger, there are 4 million visitors per day and a total of 13 million queries per day. Not much more information needed to say that this is \textbf{Big Data} problem.
 \\\\
@@ -59,13 +59,13 @@ Simple HTTP Service with a basic Application Programming Interface to serve Pipe
 
 Website with a visual representation of the data. There are plenty of ways to draw charts and maps visualizations. The Web UI will be composed by two pages:
 
-\subsubsection*{Browser} \label{browser}
+\subsubsection{Browser} \label{browser}
 
 Simple browser with four input text fields, one for the origin airport, the second for the destination and the last two for the date, month and year.
 \\\\
 Once the inputs are set, the user will be able to click the \textit{Search} button and move to the next page.
 
-\subsubsection*{Chart visualization} \label{chart_visualization}
+\subsubsection{Chart visualization} \label{chart_visualization}
 
 Simple chart with the comparison between providers offer and user demand of the selected entity through time.
 
@@ -98,7 +98,7 @@ There are several risks can appear while developing the project. Most risks appe
 
 \squad's routes service is under development and during the \thesis\ development the routes data model may change a little bit. For example, the origin and destination recently changed: In December 2017 the service was giving an \textit{Airport ID}, but now is giving an Airport object with more parameters like IATA Code\cite{iata_code}, Country ID, City ID, etc.
 
-Timetables are served, basically, in three different models: Unified Routes, Single Flight Number Routes and Summary Routes. Both Single Flight Number and Summary Routes stores timetables by days of week\footnote{Explanation of different models in section \nameref{conceptual_model}}. The current \textbf{Unified Model} is supposed to be the final one, has been studied and refined by experts on the domain and \squad\ has been adapting the output until reaching this final model. Even so, it is impossible to guess if there will be some changes.
+Timetables are served, basically, in three different models: Unified Routes, Single Flight Number Routes and Summary Routes. Both Single Flight Number and Summary Routes stores timetables by days of week\footnote{Explanation of different models in section \nameref{routes_model} on page \pageref{routes_model}}. The current \textbf{Unified Model} is supposed to be the final one, has been studied and refined by experts on the domain and \squad\ has been adapting the output until reaching this final model. Even so, it is impossible to guess if there will be some changes.
 
 \subsection{Users information}
 
