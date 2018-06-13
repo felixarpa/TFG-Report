@@ -102,7 +102,7 @@ A Date Set represents a start date and day of week pattern for a given Timetable
 \label{sfn-date-set}
 \end{table}
 
-Since the dates are represented by week days as an enumeration (\textit{mon}, \textit{tue}, \textit{wed}, ...), the grouping of flights by \textbf{day} or \textbf{month}\footnote{In version X the model changes and the pipelines group by month} becomes very difficult and non trivial. That is why the \thesis\ uses the \textbf{Unified} model.
+Since the dates are represented by week days as an enumeration (\textit{mon}, \textit{tue}, \textit{wed}, ...), the grouping of flights by \textbf{day} or \textbf{month}\footnote{The model changes and the pipelines groups by month. Learn why here: \nameref{month_version} on page \pageref{month_version}} becomes very difficult and non trivial. That is why the \thesis\ uses the \textbf{Unified} model.
 
 \subsection{Unified Timetable Object Model} \label{unified-model}
 
@@ -115,7 +115,7 @@ In the timetable pipeline owned by \squad\ first maps all data to Unified model 
 \label{unified-uml}
 \end{figure}
 
-With this model, the \nameref{flights-offer-pipeline} can apply flattening and grouping easily.
+With this model, the \nameref{available-flights-pipeline} can apply flattening and grouping easily.
 \\\\
 Airport's code will be used to identify them and pairs of codes will represent a route. This code is also know as IATA Code\cite{iata_code}.
 
@@ -139,7 +139,7 @@ A user query in \company\ contains a lot of information, but most of it is not u
 %   SECTION 5.3
 %-----------------
 
-\section{Flight Availability Model}
+\section{Available Fligths Model} \label{flight-availablity-model}
 
 As we can see above in the \nameref{unified-model}, flights are grouped by routes, then by flights, series and finally we reach the date. The \thesis\ will be queried by route and date, so it is important to have the flights stored and count its availability at date level.
 \\\\

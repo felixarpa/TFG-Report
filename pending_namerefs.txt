@@ -4,9 +4,18 @@ chapter05.tex
     \nameref{version_X}
     point to version when decide to group by month
 
-    \nameref{flights-offer-pipeline}
-    point to flights offer pipeline in design
-
     \nameref{fop-data-transformations}
-    point to flights offer pipeline design data transformation
+    point to flights offer pipeline implementation data transformation
+
+
+chapter06.tex
+    \nameref{gson}
+    point to explanation to Gson library
+
+    \nameref{scala_aws}
+    point to explanation to Scala AWS SDK
+
+    \nameref{boto3}
+    point to boto3 (implementation)
+
 
