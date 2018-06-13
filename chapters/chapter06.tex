@@ -27,7 +27,7 @@ The most common architecture used is a three layers (data layer, domain layer an
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{diagrams/architecture01.png}
-\caption{General view of the \thesis\ architecture}
+\caption{General view of the \thesis\ architecture.}
 \end{figure}
 
 % SUB SECTION 6.1.1
@@ -41,7 +41,7 @@ Both components in the this layer uses very similar technologies and are written
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.7]{diagrams/architecture-data.png}
-\caption{General view of the data collection and processing layer's architecture}
+\caption{General view of the data collection and processing layer's architecture.}
 \end{figure}
 
 \subsubsection{Amazon Athena} \label{athena}
@@ -85,7 +85,7 @@ A \textbf{Spark Transformation} is a functions that creates a new RDD form the e
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.3]{resources/dag.png}
-\caption{Example of a Directed Acyclic Graph (DAG)}
+\caption{Example of a Directed Acyclic Graph (DAG).}
 \end{figure}
 
 Most common transformations used in the project are:
@@ -269,7 +269,7 @@ Apart from these four stages, it has other to parse grouped routes by date objec
 
 \begin{itemize}
     \item \textbf{Map Summary stage}: Discards lots of fields from the model resulting from the routes \textit{sub-pipeline} and maps the data to the final records that will be written in the database.
-    \item \textbf{Write Records stage}: Using \nameref{scala_aws}, writes into \nameref{s3}.
+    \item \textbf{Write Records stage}: Writes into \nameref{s3} using \nameref{scala_aws}.
 \end{itemize}
 
 \begin{figure}[H]
@@ -395,21 +395,27 @@ Another problem found is that as more data you request, more time it gets to fin
     \item \textbf{Athena Reader stage}: Queries Athena for user searches. Athena writes automatically to S3 and returns the file name.
     \item \textbf{S3 Reader stage}: Gets the file name of the query result and reads it. CSV\cite{csv} to String RDD.
     \item \textbf{Search Query stage}: Gets the records from the Athena records, filters them by kind of search an other parameters, maps each record to the desired model and groups by route.
-    \item \textbf{Write Records stage}: Using \nameref{scala_aws}, writes into \nameref{s3}.
+    \item \textbf{Write Records stage}: Writes into \nameref{s3} using \nameref{scala_aws}.
 \end{itemize}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.45]{diagrams/user-searches-pipeline-architecture.png}
-\caption{User searches pipeline architecture and data flow diagram}
+\caption{User searches pipeline architecture and data flow diagram.}
 \end{figure}
 
 \subsection{Comparison Service}
 
-Once all the data is processed every day and stored into \nameref{s3}, it has to be served in an HTTP\cite{http} API. The first idea for the comparison service, was using an AWS Lambda Function and exposing it through AWS API Gateway. But it ended up in \nameref{ecs} with a \company\ gateway.
+Once all the data is processed every day and stored into \nameref{s3}, it has to be served in an HTTP\cite{http} API.
 \\\\
-The Comparison Servie's API provides two endpoints, one for the comparison and another one for a single source (flights or searches) request\footnote{The \textit{endpoint} tag can be \texttt{sandbox} or \texttt{prod}. Learn more about those environments in section \nameref{environments} on page \pageref{environments}.}. 
-\\\\
+The Comparison Servie's API provides two endpoints, one for the comparison and another one for a single source (flights or searches) request\footnote{The \textit{endpoint} tag can be \texttt{sandbox} or \texttt{prod}. Learn more about those environments in section \nameref{environments} on page \pageref{environments}.}. The main class, API Handler, execute a function when the endpoint is queried and uses an AWS Adapter that is directly connected to \nameref{boto3}. The API Handler returns a set of records in JSON format.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{diagrams/server-architecture.png}
+\caption{Comparison service class diagram.}
+\end{figure}
+
 \textbf{\texttt{/api/comparison/{environment}/{route}/{date}}}
 \\\\
 GET two sets of data for a given route and date: All existent versions values for available flights and user searches.
@@ -417,6 +423,8 @@ GET two sets of data for a given route and date: All existent versions values fo
 \textbf{\texttt{/api/historical/{environment}/{source}/{route}/{date}}}
 \\\\
 GET one sets of data for a given route and date and source\footnote{The two available source the Service have are: Available Flights and User Searches}: All existent versions.
+
+The first idea for the comparison service, was using an AWS Lambda Function and exposing it through AWS API Gateway. But it ended up in \nameref{ecs} with a \company\ gateway.
 
 \subsubsection{Amazon Lambda} \label{lambda}
 
@@ -445,6 +453,14 @@ Simple service that provides a front door for whatever other Amazon's service.
 \company\ reached the limit of API Gateways. Using a Lambda I would have open an special request in the company to get a new API Gateway, this request would have been provably reject because API Gateways are reserved for very specific uses. That is why \nameref{lambda} and API Gateway was not used for the service.
 
 \subsection{Web UI}
+
+Finally, in the front end of the application, the Web UI. A simple website with only one page, based in the Composite Pattern becomes a responsive application with a high code scalability and maintainability.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{diagrams/web-ui-architecture.png}
+\caption{Web UI class architecture. In blue we can appreciate the Composite Pattern base classes and relations.}
+\end{figure}
 
 %-----------------
 %   SECTION 6.2
