@@ -210,6 +210,8 @@ Amazon Elastic Container Service, also known as ECS\cite{ecs}, is a container ma
 
 Docker\cite{docker} tool that creates a container where you can run whichever application you want with its environment. A Docker container can be created in a lot of machines, for example in an \nameref{ecs}.
 
+% SUB SECTION 6.1.3
+
 \subsection{Website}
 
 Finally, the presentation layer gets data from the \nameref{service} and displays. The architecture of this layer is very simple, the website does an HTTP request to the service and gets a JSON back.
@@ -242,6 +244,8 @@ It is also ran in a \nameref{docker} container deployed in \nameref{ecs}.
 \section{Components}
 
 Once the technology each layer will use, lets define the code architecture of each component.
+
+% SUB SECTION 6.2.1
 
 \subsection{Available Flights Pipeline} \label{available-flights-pipeline}
 
@@ -381,6 +385,8 @@ BCN-EDI/
 
 With this design, the service takes less than a second to get all the data and the pipeline takes one hour to write all the records.
 
+% SUB SECTION 6.2.2
+
 \subsection{User Searches Pipeline} \label{user-searches-pipeline}
 
 The user demand is obtained from \textbf{user searches} table in \nameref{athena}. Then the results of the Athena query are mapped to the same data model of the stored in S3 by the \nameref{available-flights-pipeline}.
@@ -404,7 +410,9 @@ Another problem found is that as more data you request, more time it gets to fin
 \caption{User searches pipeline architecture and data flow diagram.}
 \end{figure}
 
-\subsection{Comparison Service}
+% SUB SECTION 6.2.3
+
+\subsection{Comparison Service} \label{comparison_service}
 
 Once all the data is processed every day and stored into \nameref{s3}, it has to be served in an HTTP\cite{http} API.
 \\\\
@@ -452,7 +460,11 @@ Simple service that provides a front door for whatever other Amazon's service.
 \\\\
 \company\ reached the limit of API Gateways. Using a Lambda I would have open an special request in the company to get a new API Gateway, this request would have been provably reject because API Gateways are reserved for very specific uses. That is why \nameref{lambda} and API Gateway was not used for the service.
 
-\subsection{Web UI}
+\newpage
+
+% SUB SECTION 6.2.4
+
+\subsection{Web UI} \label{web-ui}
 
 Finally, in the front end of the application, the Web UI. A simple website with only one page, based in the Composite Pattern becomes a responsive application with a high code scalability and maintainability.
 
@@ -462,8 +474,16 @@ Finally, in the front end of the application, the Web UI. A simple website with 
 \caption{Web UI class architecture. In blue we can appreciate the Composite Pattern base classes and relations.}
 \end{figure}
 
-%-----------------
-%   SECTION 6.2
-%-----------------
+The main composite class of the website is \texttt{App}, it renders the header and give arguments and properties to the \texttt{Search}, \texttt{Queries} and \texttt{Chart} components. The \texttt{App} component also is connected to the \texttt{Client} class, it runs requests to the API provided by the Comparison Service.
+\\\\
+The \texttt{Search} component display input fields and calls the \texttt{runSearch} function when the user clicks the \textit{Search} button.
+\\\\
+All the results will be shown in the \texttt{Chart} component and the queries in the \texttt{Queries} component, composed by \texttt{Query}; this will be used as a legend and will let the user remove queries from the chart.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.29]{resources/website-design.png}
+\caption{Web UI design.}
+\end{figure}
 
 

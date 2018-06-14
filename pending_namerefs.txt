@@ -1,9 +1,6 @@
 Pending namerefs:
 
 chapter05.tex
-    \nameref{version_X}
-    point to version when decide to group by month
-
     \nameref{fop-data-transformations}
     point to flights offer pipeline implementation data transformation
 
