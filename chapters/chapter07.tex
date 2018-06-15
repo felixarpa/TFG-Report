@@ -1,8 +1,8 @@
-%---------------------------
-% CHAPTER 7: Implementation
-%---------------------------
+%------------------------
+% CHAPTER 7: Development
+%------------------------
 
-\chapter{Implementation}
+\chapter{Development}
 
 \label{chapter07}
 
@@ -40,7 +40,6 @@ Often abbreviated as JS, JavaScript is an interpreted programming language core 
 
 \begin{figure}[H]
 \includegraphics[scale=0.1]{resources/www-tech-logos.jpeg}
-\caption{HTML 5, JavaScript and CSS 3 logos.}
 \end{figure}
 
 \section{External libraries and frameworks}
@@ -50,6 +49,10 @@ Often abbreviated as JS, JavaScript is an interpreted programming language core 
 Amazon provides a lot of APIs for different programming languages. The AWS SDK for Java enable Java developers to easily work with Amazon Web Services and build scalable solutions with Amazon S3, Amazon Athena, Amazon DynamoDB, and more. Since Scala is assembled by the Java Virtual Machine, Amazon created the Scala Amazon Web Services SDK, it's like the AWS SDK for Java, but more Scala-y.
 \\\\
 Thanks to that Software Development Kit both pipelines can write to the \nameref{s3} and query \nameref{athena} in the case of the User Searches Pipeline.
+
+\subsection*{Gson\cite{gson}} \label{gson}
+
+Most data is usually serialized in JSON\cite{json} format, to deserialize it and get an Scala object, both pipelines use Google's library: Gson.
 
 \subsection*{Boto3\cite{boto3}} \label{boto3}
 
@@ -96,6 +99,8 @@ The two main tools used for the development of the \thesis\ are IntelliJ IDEA by
 \end{figure}
 
 Sublime Text is not an IDE, is just a text editor for code, markup and prose. Sophisticated and full of features for the developers, makes easier the development of software, systems and applications that do not have an specific IDE or that the existing development environment complicates the project. That is why Sublime Text 3 has been used for the \nameref{comparison_service} and the \nameref{web-ui}.
+
+\section{Deployment}
 
 
 

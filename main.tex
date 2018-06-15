@@ -65,7 +65,7 @@ headsepline, % Uncomment to get a line under the header
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
-\newdate{date}{02}{06}{2018}
+\newdate{date}{15}{06}{2018}
 \date{\displaydate{date}}
 
 %----------------------------------------------------------------------------------------
@@ -165,9 +165,9 @@ headsepline, % Uncomment to get a line under the header
 \begin{titlepage}
 \begin{center}
 
-\includegraphics[scale=0.25]{resources/logo-skyscanner.png}
+\includegraphics[scale=0.3]{resources/logo-skyscanner.png}
 
-\includegraphics[scale=0.1]{resources/logo-upc.png} % University/department logo - uncomment to place it
+\includegraphics[scale=0.2]{resources/logo-upc.png} % University/department logo - uncomment to place it
 
 \vspace*{.04\textheight}
 {\scshape\LARGE \href{https://www.skyscanner.net/}{\company}\\ in collaboration with\\ \href{http://www.upc.edu}\univname\par}\vspace{1.5cm} % University name
@@ -175,7 +175,7 @@ headsepline, % Uncomment to get a line under the header
 
 \HRule \\[0.4cm] % Horizontal line
 {\Huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis 
-{\large Skyscanner's data comparison\par}\vspace{0.1cm} % Thesis title
+{\large Skyscanner available flights and user searches comparison\par}\vspace{0.1cm} % Thesis title
 \HRule \\[1.5cm] % Horizontal line
  
 \begin{minipage}[t]{0.4\textwidth}
@@ -219,13 +219,13 @@ headsepline, % Uncomment to get a line under the header
 
 \begin{abstract}
 \addchaptertocentry{\abstractname}
-In the last century, the world has became smaller. Communications are easier and faster than fifty years ago. Back then, you could talk through a fix phone, but you were not able to send any kind of media, like photos, videos, etc. Only the latest technology of that moment was able to do that. Since the smart phone revolution in 2007 almost everyone can text messages, sending images, share live videos or almost whatever you can imagine in less than a second.
+In the last century, the world has became smaller. Communications are easier and faster than fifty years ago. Back then, you could talk through a fix phone, but you were not able to send any kind of media, like photos, videos, etc. Only the latest technology of that moment was able to do that. Since the smart phone revolution in 2007 almost everyone can text messages, send images, share live videos and much more in less than a second.
 \\\\
-But the internet, phones and communications are not the only thing that made the world smaller. Ways of traveling helped to this earth flattering too. In 1918 visiting another place was very difficult. If you wanted to go through the sea, you had to do it by boat. The fastest way to travel very far in a continent was by train, but not all places were connected with rails. Nowadays, all along with the internet revolution, anyone can travel to the other side of the world in less than a day by plane. Even for traveling inside the same country people use planes.
+But the internet, phones and communications are not the only thing that made the world smaller. Ways of traveling helped that earth flattering too. In 1918 visiting another place was very difficult. If you wanted to cross the sea, you had to do it by boat, and those trips could last days or weeks. The fastest way to travel very far in a continent was by train, but not all places were connected with rails. Nowadays, all along with the internet revolution, anyone can travel to the other side of the world in less than a day by plane. Even for traveling inside the same country people use planes.
 \\\\
-But, is the air industry as efficient enough? Are all airlines users satisfied with their purchases and possibilities? \company\ provides an easy to use tool to search cheap flights from any airport to another. Sadly, sometimes is difficult for users to find what they really want.
+But, is the air industry as efficient enough? Are all airlines' users satisfied with their purchases and possibilities? \company\ provides a user friendly tool to search cheap flights from any airport to another. Sadly, sometimes is difficult for users to find what they really want.
 \\\\
-This project wants to help solving this problem, providing a visual comparison to explore differences and similarities between what users search and what airlines provides. Being able to compare between specific dates to guess user behavior.
+This project wants to help to solve this problem, providing a visual comparison to explore differences and similarities between what the users search and what the airlines provide. Making easier to compare between specific dates to guess user behavior.
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -235,7 +235,7 @@ This project wants to help solving this problem, providing a visual comparison t
 \tableofcontents
 
 %----------------------------------------------------------------------------------------
-%   THESIS CONTENT - APPENDICES
+%   THESIS CONTENT
 %----------------------------------------------------------------------------------------
 
 \mainmatter
@@ -249,11 +249,30 @@ This project wants to help solving this problem, providing a visual comparison t
 \include{chapters/chapter05}
 \include{chapters/chapter06}
 \include{chapters/chapter07}
+\include{chapters/chapter08}
+\include{chapters/chapter09}
+\include{chapters/chapter10}
 
 %----------------------------------------------------------------------------------------
 
+\cleardoublepage
+% \phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures % Prints the list of figures
+
+\cleardoublepage
+% \phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables % Prints the list of tables
+
 %----------------------------------------------------------------------------------------
-%	THESIS CONTENT - APPENDICES
+%   BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\printbibliography[heading=bibintoc]
+
+%----------------------------------------------------------------------------------------
+%   THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
 
 \appendix % Cue to tell LaTeX that the following "chapters" are Appendices
@@ -262,11 +281,6 @@ This project wants to help solving this problem, providing a visual comparison t
 % Uncomment the lines as you write the Appendices
 
 \include{appendices/appendixA}
-
-%----------------------------------------------------------------------------------------
-%   BIBLIOGRAPHY
-%----------------------------------------------------------------------------------------
-
-\printbibliography[heading=bibintoc]
+\include{appendices/appendixB}
 
 \end{document} 

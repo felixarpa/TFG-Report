@@ -14,19 +14,19 @@ Knowing the context inside \company\ and all the state of the art of this projec
 
 \section{Formulation of the problem} \label{problem}
 
-The main goal of this project is creating a tool for \textit{\company} to ease the routes comparison with different parameters, taking into account values like \textbf{user searches} and \textbf{flights available} by airlines.
+The main goal of this project is creating a tool for \textit{\company} to ease the routes comparison, taking into account sources like \textbf{user searches} and \textbf{flights available} by airlines.
 \\\\
-In any team of \company, user queries and providers data is compared in order to guess valuable trends.
+As explained before, in any team of \company, user queries and providers data is compared in order to guess valuable trends. Found that gap, a bunch of new ideas appeared. After some talks with product owners of different squads and some senior engineers, a promising idea showed up:
+
+\begin{displayquote}
+Comparison of \textbf{user searches} and \textbf{flights available} by airlines; enabling finding \textit{over-requested} routes, those routes with more user demand than availability by the providers.
+\end{displayquote}
+
+\squad\ manages a huge amount of data: All flights planned for the next year, these are more than \textbf{75 million records}. The database of all user queries in the website or mobile application is even bigger, there are 4 million visitors per day and a total of \textbf{13 million queries per day}. Not much more information needed to say that this is \textbf{big data} problem.
 \\\\
-Found that gap, a bunch of new ideas appeared. After some talks with product owners of different squads and some senior engineers, a promising idea showed up:
+With \squad's product owner help, we found some use stories for the processing of those 75 million routes and all user session's queries to get some significant results, then we set a mission for this ptoject:
 \\\\
-Comparison of \textbf{user searches} and \textbf{flights available} by airlines, enabling finding \textit{over-requested} routes or airports. Those routes or airports with more user demand than availability by the providers.
-\\\\
-\squad\ manages a huge amount of data: All flights planned for the next year and a half, these are more than 75 million records. The database of all user queries in the website or mobile application is even bigger, there are 4 million visitors per day and a total of 13 million queries per day. Not much more information needed to say that this is \textbf{Big Data} problem.
-\\\\
-With \squad's product owner help, we found some use cases for the processing of those 75 million routes and all user session's queries to get some significant results:
-\\\\
-Provide a \textbf{visual tool} to find routes with much \textbf{more demand than offer} and be able to observe the \textbf{evolution} of it {through time}:
+Provide a \textbf{visual tool} to find routes with much \textbf{more demand} (user searches) \textbf{than offer} (available flights) and be able to observe the \textbf{evolution} of it through time:
 
 \begin{itemize}
   \item A route with a lot of demand, but not enough offer to cover it, will be \textbf{over-requested}.
@@ -59,13 +59,13 @@ Simple HTTP Service with a basic Application Programming Interface to serve Pipe
 
 Website with a visual representation of the data. There are plenty of ways to draw charts and maps visualizations. The Web UI will be composed by two pages:
 
-\subsubsection{Browser} \label{browser}
+\subsubsection*{Browser} \label{browser}
 
 Simple browser with four input text fields, one for the origin airport, the second for the destination and the last two for the date, month and year.
 \\\\
 Once the inputs are set, the user will be able to click the \textit{Search} button and move to the next page.
 
-\subsubsection{Chart visualization} \label{chart_visualization}
+\subsubsection*{Chart visualization} \label{chart_visualization}
 
 Simple chart with the comparison between providers offer and user demand of the selected entity through time.
 
@@ -124,6 +124,40 @@ Creating the interactive map and plots for the proposed website from zero, is a 
 
 %-----------------
 %   SECTION 3.4
+%-----------------
+
+\section{Resources} \label{resources}
+
+\company\ is already in the air, it is running and has been running for more than ten years. In the past two years it has been migrating all their services to Amazon Web Services\cite{aws}.
+\\\\
+Amazon Web Services have a lot of available different services in it for different purposes. The services that will be used or important for this projects are\footnote{All the resources are well defined in chapter \nameref{chapter06} on page \pageref{chapter06}}:
+
+\begin{itemize}
+    \item Compute
+    \begin{itemize}
+        \item Lambda
+        \item ECS: Elastic Container Service
+    \end{itemize}
+    \item Storage and Database
+    \begin{itemize}
+        \item S3: Simple Storage Service
+        \item DynamoDB: Dynamic Database
+        \item RDS: Relational Database Service
+    \end{itemize}
+    \item Analytics
+    \begin{itemize}
+        \item Athena
+        \item EMR: Elastic MapReduce
+        \item Data Pipeline
+    \end{itemize}
+    \item Others
+    \begin{itemize}
+        \item API Gateway, Networking \& Content Delivery
+    \end{itemize}
+\end{itemize}
+
+%-----------------
+%   SECTION 3.5
 %-----------------
 
 \section{Methodology and rigor} \label{methodology_rigor}

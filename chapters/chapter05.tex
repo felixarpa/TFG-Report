@@ -22,7 +22,7 @@ The data model must be also subject to change and pretty clear, to fulfill non-f
 
 The \textbf{Single Flight Number} (SFN) timetables data schema is designed with the following object model.
 
-\subsubsection{SFN Route}
+\subsubsection*{SFN Route}
 
 Represents a route between 2 airports and the SFNs timetable that are available on that route. It is composed by three fields:
 
@@ -39,7 +39,7 @@ Represents a route between 2 airports and the SFNs timetable that are available 
 \label{sfn-route}
 \end{table}
 
-\subsubsection{SFN Timetable Series}
+\subsubsection*{SFN Timetable Series}
 
 Represents a SFN timetable for the year ahead.
 
@@ -56,7 +56,7 @@ Represents a SFN timetable for the year ahead.
 \label{sfn-series}
 \end{table}
 
-\subsubsection{SFN Timetable Series Item}
+\subsubsection*{SFN Timetable Series Item}
 
 A Timetable Series Item represents a specific configurations of operating carrier, stops and times of day for a given SFN timetable. For example for a given Marketing Carrier / Flight Number, the Operating Carrier or times of day may change through the year.
 
@@ -81,11 +81,11 @@ A Timetable Series Item represents a specific configurations of operating carrie
 \label{sfn-series-item}
 \end{table}
 
-\subsubsection{Traffic restrictions}
+\subsubsection*{Traffic restrictions}
 
 A set of flags indicating restrictions relating to how an timetabled flight might be sold. Not relevant for this project.
 
-\subsubsection{SFN Date Set} \label{sfn-date-set}
+\subsubsection*{SFN Date Set} \label{sfn-date-set}
 
 A Date Set represents a start date and day of week pattern for a given Timetable Series Item.
 
@@ -163,7 +163,7 @@ Date class contains a strings in date format \texttt{YYYY-MM-DD} and the number 
 
 The user searches model has been simplified and a lot of fields from the original model has been removed. Since the amount of data of user searches increases on the order of millions per day, the model contains the basic data.
 
-\subsubsection{User Searches Route}
+\subsubsection*{User Searches Route}
 
 \begin{table}[H]
 \centering
@@ -177,7 +177,7 @@ The user searches model has been simplified and a lot of fields from the origina
 \caption{User Searches Route fields}
 \end{table}
 
-\subsubsection{Searches Date}
+\subsubsection*{Searches Date}
 
 \begin{table}[H]
 \centering

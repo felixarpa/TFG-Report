@@ -44,7 +44,7 @@ Both components in the this layer uses very similar technologies and are written
 \caption{General view of the data collection and processing layer's architecture.}
 \end{figure}
 
-\subsubsection{Amazon Athena} \label{athena}
+\subsubsection*{Amazon Athena} \label{athena}
 
 \begin{figure}[H]
 \includegraphics[scale=0.1]{resources/athena-logo.png}
@@ -56,7 +56,7 @@ To access the data, Athena simply points to an S3 bucket with a defined schema a
 \\\\
 \nameref{data_tribe} is responsible of creating schemas for Athena to read S3 buckets. They have a huge bucket called \texttt{grappler\_master\_archive} that contains all the user searches. Athena becomes the easiest way to access user searches data.
 
-\subsubsection{Amazon Simple Storage Service} \label{s3}
+\subsubsection*{Amazon Simple Storage Service} \label{s3}
 
 \begin{figure}[H]
 \includegraphics[scale=0.1]{resources/s3-logo.png}
@@ -66,7 +66,7 @@ Amazon Simple Storage Service\cite{s3}, also known as \textit{S3}, stores data a
 \\
 In \company, most of the results of \nameref{data_pipeline}s are stored as a single or multiple files in S3, then those are processed by \nameref{lambda} functions or other services. \squad\ stores timetables as a JSON\cite{json} file in its S3 bucket. Data tribe has also a bucket for user searches (and much more) data, but, as explained before, it provides access from \nameref{athena}.
 
-\subsubsection{Apache Spark\textsuperscript{TM}} \label{apache_spark}
+\subsubsection*{Apache Spark\textsuperscript{TM}} \label{apache_spark}
 
 \begin{figure}[H]
 \includegraphics[scale=0.1]{resources/apache-spark_logo.png}
@@ -126,7 +126,7 @@ Aggregate the elements of each partition, and then the results for all the parti
 Applies a function f for all elements of this RDD.
 \end{displayquote}
 
-\subsubsection{Amazon Data Pipeline} \label{data_pipeline}
+\subsubsection*{Amazon Data Pipeline} \label{data_pipeline}
 
 \begin{figure}[H]
 \includegraphics[scale=0.1]{resources/data_pipeline-logo.png}
@@ -138,7 +138,7 @@ If, for any reason, the pipeline fails, this service retries the execution, if t
 \\\\
 Data Pipelines can also be scheduled to run every hour, every two hours, every day, week, etc. Both pipelines are scheduled to run once a day every day. In every executions, first builds the environment (\nameref{emr} and \nameref{apache_spark}) and then runs the JAR\cite{jar} file generated from available flights pipeline and user searches pipeline. To avoid unnecessary dependencies, there are two \nameref{data_pipeline}s, one for the flights and another for the user searches.
 
-\subsubsection{Amazon Elastic MapReduce} \label{emr}
+\subsubsection*{Amazon Elastic MapReduce} \label{emr}
 
 \begin{figure}[H]
 \includegraphics[scale=0.1]{resources/emr-logo.png}
@@ -194,7 +194,7 @@ A \nameref{docker} container is created and managed by \nameref{ecs}. In this co
 % \caption{General view of the web service layer's architecture}
 % \end{figure}
 
-\subsubsection{Amazon Elastic Container Service} \label{ecs}
+\subsubsection*{Amazon Elastic Container Service} \label{ecs}
 
 \begin{figure}[H]
 \includegraphics[scale=0.1]{resources/ecs-logo.png}
@@ -202,7 +202,7 @@ A \nameref{docker} container is created and managed by \nameref{ecs}. In this co
 
 Amazon Elastic Container Service, also known as ECS\cite{ecs}, is a container management service that supports Docker\nameref{docker}. It ease the container orchestration with a simple API.
 
-\subsubsection{Docker} \label{docker}
+\subsubsection*{Docker} \label{docker}
 
 \begin{figure}[H]
 \includegraphics[scale=0.1]{resources/docker-logo.png}
@@ -217,25 +217,6 @@ Docker\cite{docker} tool that creates a container where you can run whichever ap
 Finally, the presentation layer gets data from the \nameref{service} and displays. The architecture of this layer is very simple, the website does an HTTP request to the service and gets a JSON back.
 \\\\
 It is also ran in a \nameref{docker} container deployed in \nameref{ecs}.
-%it using \nameref{vega}. The whole website is build with the \company\ standard for \textit{frontend} \nameref{react}.
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[scale=0.7]{diagrams/architecture-web.png}
-% \caption{General view of the website layer's architecture}
-% \end{figure}
-
-% \subsubsection{Vega} \label{vega}
-
-% \begin{figure}[H]
-% \includegraphics[scale=0.88]{resources/idl-logo.png}
-% \end{figure}
-
-% \subsubsection{React.js} \label{react}
-
-% \begin{figure}[H]
-% \includegraphics[scale=0.1]{resources/react-logo.png}
-% \end{figure}
 
 %-----------------
 %   SECTION 6.2
@@ -284,7 +265,7 @@ Apart from these four stages, it has other to parse grouped routes by date objec
 
 To end up doing applying this architecture, there have been a lot of alternatives during all the development of the Available Flights Pipeline.
 
-\subsubsection{Amazon Relational Database Service} \label{rds}
+\subsubsection*{Amazon Relational Database Service} \label{rds}
 
 \begin{figure}[H]
 \includegraphics[scale=0.1]{resources/rds-logo.png}
@@ -297,7 +278,7 @@ In the beginning, the idea was to write all data to Amazon RDS, Relational Datab
     \item \textbf{Knowledge}: I know about some squads that used that in some occasion, but not based in Barcelona. Reading some documentations and examples, it looked very difficult to set up and use, there were alternatives 
 \end{itemize}
 
-\subsubsection{Amazon DynamoDB} \label{dynamodb}
+\subsubsection*{Amazon DynamoDB} \label{dynamodb}
 
 \begin{figure}[H]
 \includegraphics[scale=0.2]{resources/dynamodb-logo.png}
@@ -309,7 +290,7 @@ Another idea about the database where the pipeline could write was Amazon RDS, R
     \item \textbf{Cost}: It is very expensive to have an DynamoDB, even more expensive than \nameref{rds}.
 \end{itemize}
 
-\subsubsection{S3 and dates at month level} \label{month_version}
+\subsubsection*{S3 and dates at month level} \label{month_version}
 
 The main problem of these pipeline that happens in the \nameref{user-searches-pipeline} as well, is that \textbf{versions are written every day} and does not delete anything to satisfy functional requirement of Historical data (\#8)
 \\\\
@@ -430,11 +411,55 @@ GET two sets of data for a given route and date: All existent versions values fo
 \\\\
 \textbf{\texttt{/api/historical/{environment}/{source}/{route}/{date}}}
 \\\\
-GET one sets of data for a given route and date and source\footnote{The two available source the Service have are: Available Flights and User Searches}: All existent versions.
+GET one sets of data for a given route and date and source\footnote{The two available source the Service have are: Available Flights and User Searches}: All existent versions. The eight functional requirement of the \thesis\ is to provide an endpoint to get historical data, this endpoint satisfies the requirement.
+\\\\
+Here is an example of the usage:
 
+\begin{verbatim}
+GET /api/historical/prod/searches/BCN-EDI/2018-10
+
+RESPONSE
+{
+    queries: [
+        {
+            id: 1529050761587,
+            name: "Searches BCN-EDI 10/2018",
+            source: "Searches",
+            origin: "BCN",
+            destination: "EDI",
+            month: "10",
+            year: "2018"
+        }
+    ],
+    results: [
+        {
+            date: 1523404800000,
+            version: "2018-04-11",
+            count: 122,
+            key: 1529050761587
+        },
+        {
+            date: 1523491200000,
+            version: "2018-04-12",
+            count: 197,
+            key: 1529050761587
+        },
+        {
+            date: 1523577600000,
+            version: "2018-04-13",
+            count: 143,
+            key: 1529050761587
+        },
+        ...
+    ]
+}
+\end{verbatim}
+
+In this response, the results object contains an array of records, each one with the date in milliseconds, the date in human format (version), amount of searches in this case (count), and a key that is the same for all the results, is the same as the query. This data has enough detail for the developer start making some analysis.
+\\\\
 The first idea for the comparison service, was using an AWS Lambda Function and exposing it through AWS API Gateway. But it ended up in \nameref{ecs} with a \company\ gateway.
 
-\subsubsection{Amazon Lambda} \label{lambda}
+\subsubsection*{Amazon Lambda} \label{lambda}
 
 \begin{figure}[H]
 \includegraphics[scale=0.1]{resources/lambda-logo.png}
@@ -446,11 +471,11 @@ Is one of the most uses service used bu Amazon Web Service. It is a \textit{serv
 \textit{Run code without thinking about servers. Pay only for the compute time you consume.}
 \end{displayquote}
 
-Lambda functions can be executed from an S3 event (run a lambda when a file under a given prefix is putted in a bucket) or an API Gateway, it get an event and a context input, runs Python\cite{python} or Node.js\cite{nodejs} code and returns (or not) some value. By default Lambdas have a three minutes timeout, which is not a problem. Also, Lambdas \textbf{scale automatically}.
+Lambda\cite{lambda} functions can be executed from an S3 event (run a lambda when a file under a given prefix is putted in a bucket) or an API Gateway, it get an event and a context input, runs Python\cite{python} or Node.js\cite{nodejs} code and returns (or not) some value. By default Lambdas have a three minutes timeout, which is not a problem. Also, Lambdas \textbf{scale automatically}.
 \\\\
 This service looked very promising but was not used because of API Gateways.
 
-\subsubsection{Amazon API Gateway}
+\subsubsection*{Amazon API Gateway}
 
 \begin{figure}[H]
 \includegraphics[scale=0.2]{resources/api-logo.png}
@@ -458,7 +483,7 @@ This service looked very promising but was not used because of API Gateways.
 
 Simple service that provides a front door for whatever other Amazon's service.
 \\\\
-\company\ reached the limit of API Gateways. Using a Lambda I would have open an special request in the company to get a new API Gateway, this request would have been provably reject because API Gateways are reserved for very specific uses. That is why \nameref{lambda} and API Gateway was not used for the service.
+\company\ reached the limit of API Gateways\cite{api-gateway}. Using a Lambda I would have open an special request in the company to get a new API Gateway, this request would have been provably reject because API Gateways are reserved for very specific uses. That is why \nameref{lambda} and API Gateway was not used for the service.
 
 \newpage
 
@@ -467,6 +492,8 @@ Simple service that provides a front door for whatever other Amazon's service.
 \subsection{Web UI} \label{web-ui}
 
 Finally, in the front end of the application, the Web UI. A simple website with only one page, based in the Composite Pattern becomes a responsive application with a high code scalability and maintainability.
+
+\subsubsection*{Architecture}
 
 \begin{figure}[H]
 \centering
@@ -485,5 +512,75 @@ All the results will be shown in the \texttt{Chart} component and the queries in
 \includegraphics[scale=0.29]{resources/website-design.png}
 \caption{Web UI design.}
 \end{figure}
+
+\subsubsection*{Requirements satisfaction}
+
+All functional requirements except eight must be satisfied in the Web UI. Let's review them and explain how they get satisfied:
+
+\begin{enumerate}
+    \item \textbf{Search availability values by origin, destination, month and year}: \textit{Let the user of the \thesis\ search available flights evolution by date, for a given route (origin and destination), month and year of the flight.}
+    \\\\
+    In the search component, the user can select available flights, set an origin, destination, month and year.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{resources/search-availability.png}
+    \caption{Demo of the search available flights functionality.}
+    \end{figure}
+
+    \item \textbf{Search searches values by origin, destination, month and year}: \textit{Same as feature \#1, but for user searches instead of available flights.}
+    \\\\
+    In the search component, the user can select user searches, set an origin, destination, month and year.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{resources/search-searches.png}
+    \caption{Demo of the search user searches functionality.}
+    \end{figure}
+
+    \item \textbf{Search multiple availability values}: \textit{Be able to search and show multiple availability values for different flights in the same chart, easing the comparison between both queries. For example: Route A-B in August 2018 shows more availability than route A-C in August 2018 from January to March, but A-C has more availability than A-B from April until today.}
+    \\\\
+    Once the user has searched for flight availability, it can search again and the results will appear in the chart.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{resources/search-multiple-availability.png}
+    \caption{Demo of the search multiple available flights functionality.}
+    \end{figure}
+
+    \item \textbf{Search multiple searches values}: \textit{Be able to query and display multiple user searches values for different routes in the same chart, easing the comparison between both queries. For example: Route A-B in August 2017 shows more searches than route A-B in December 2017 from January to June, but A-B in December has more than in August from July until December.}
+    \\\\
+    Once the user has searched for user searches, it can search again and the results will appear in the chart.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{resources/search-multiple-searches.png}
+    \caption{Demo of the search multiple user searches functionality.}
+    \end{figure}
+
+    \item \textbf{Search multiple mixed values}: \textit{Enable comparison between availability and searches as well. Search and display the comparison in the chart.}
+    \\\\
+    In the search component, the user can select the comparison field, set an origin, destination, month and year. It is the same as search first for available flights and then for user searches with the same parameters.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{resources/search-comparison.png}
+    \caption{Demo of the search comparison functionality.}
+    \end{figure}
+
+    \item \textbf{Add new query to chart}: \textit{Search for offer or demand (features \#1 or \#2) and display the result in the chart.}
+    \\\\
+    Every time the user searches for data, the query is \textbf{added} to the chart.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{resources/queries-list.png}
+    \caption{Demo of the queries functionality.}
+    \end{figure}
+
+    \item \textbf{Remove query from chart}: \textit{Remove data from the chart, stop displaying an specific query's data.}
+    \\\\
+    Each query has a remove button that removes it from the chart.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{resources/queries-remove.png}
+    \caption{Demo of the remove queries functionality.}
+    \end{figure}
+
+\end{enumerate}
 
 
