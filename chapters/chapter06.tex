@@ -8,7 +8,7 @@
 
 With all the specification of the data the \thesis\ will work with, a good architecture for the system is needed. The whole software project is split in four different parts: Available Flights Pipeline, User Searches Pipeline, Comparison Service and Web UI.
 \\\\
-In this chapter all four architectures for the four different parts will be defined and analyzed. All alternatives will also be defined and explain why it is not in the final architecture.
+In this chapter all four architectures for the four different parts will be defined and analyzed. All alternatives will also be defined and explain why are not in the final architecture.
 \\\\
 Even so, first it is good to understand the general architecture of the whole \thesis.
 
@@ -36,7 +36,7 @@ The most common architecture used is a three layers (data layer, domain layer an
 
 This layer is composed by two components, one for each data processing: Available Flights Pipeline and User Searches Pipeline. The purpose of this layer is to collect all data necessary to do the comparison and filter and group according the final data model needed.
 \\\\
-Both components in the this layer uses very similar technologies and are written in Scala\cite{scala}. The data is read from different sources that already exist in \company\ and have a well defined design (\nameref{data_tribe} and \squad's pipeline) and services (\nameref{athena} and \nameref{s3}, S3). The whole data processing or data pipeline ran in Apache Spark, in an EMR cluster. In the end of the process both pipelines write into the same Storage service.
+Both components in the this layer uses very similar technologies and are written in Scala\nameref{scala}. The data is read from different sources that already exist in \company\ and have a well defined design (\nameref{data_tribe} and \squad's pipeline) and amazon web services (\nameref{athena} and \nameref{s3}, S3). The whole data processing or data pipeline ran in Apache Spark, in an \nameref{emr} cluster. In the end of the process both pipelines write into the same Storage service.
 
 \begin{figure}[H]
 \centering
@@ -47,29 +47,35 @@ Both components in the this layer uses very similar technologies and are written
 \subsubsection*{Amazon Athena} \label{athena}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/athena-logo.png}
+\caption{Amazon Athena logo}
 \end{figure}
 
 Amazon Athena\cite{athena}, is an Amazon Web Service that lets query data stored in \nameref{s3} (S3) using standard SQL\cite{sql}. It have no server running, so it have no infrastructure to manage.
 \\\\
 To access the data, Athena simply points to an S3 bucket with a defined schema and it lets you query its data with SQL queries. The cost of the service is based on the queries you run.
 \\\\
-\nameref{data_tribe} is responsible of creating schemas for Athena to read S3 buckets. They have a huge bucket called \texttt{grappler\_master\_archive} that contains all the user searches. Athena becomes the easiest way to access user searches data.
+\nameref{data_tribe} is responsible of creating schemas for Athena to read S3 buckets. They have a huge bucket called \texttt{grappler\_master\_archive} that contains all the user searches. Athena is now the easiest way to access user searches data.
 
 \subsubsection*{Amazon Simple Storage Service} \label{s3}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/s3-logo.png}
+\caption{Amazon Simple Storage Service logo}
 \end{figure}
 
-Amazon Simple Storage Service\cite{s3}, also known as \textit{S3}, stores data as objects within resources called buckets. It allows store unlimited objects in a bucket, also write, read and delete those objects. The maximum size of these objects is 5 terabytes. The access to buckets can be controlled.
+Amazon Simple Storage Service\cite{s3}, also known as \textit{S3}, stores data as objects within resources called buckets. It allows store unlimited objects in a bucket, also write, read and delete those objects. The maximum size of these objects is 5 terabytes. The access permission to buckets can be controlled its configuration.
 \\
 In \company, most of the results of \nameref{data_pipeline}s are stored as a single or multiple files in S3, then those are processed by \nameref{lambda} functions or other services. \squad\ stores timetables as a JSON\cite{json} file in its S3 bucket. Data tribe has also a bucket for user searches (and much more) data, but, as explained before, it provides access from \nameref{athena}.
 
 \subsubsection*{Apache Spark\textsuperscript{TM}} \label{apache_spark}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/apache-spark_logo.png}
+\caption{Apache Spark\textsuperscript{TM} logo}
 \end{figure}
 
 Apache Spark\textsuperscript{TM} is a unified analytics engine for large-scale data processing. It was created and it is currently maintained by the Apache Software Foundation\cite{apache_software_foundation}.
@@ -80,7 +86,7 @@ Apache Spark\textsuperscript{TM}'s architecture is based in \textit{Resilient Di
 \\\\
 To an RDD, you can apply two kind of operations: transformations and actions:
 \\\\
-A \textbf{Spark Transformation} is a functions that creates a new RDD form the existing one. Transformations are lazy operations and only are executed when an action is called. When calling a transformation, a link is created between two RDDs, this happens successively until the action is executed. Then, all transformations are applied until the action. These links between transformations creates a directed acyclic graph.
+A \textbf{Spark Transformation} are functions that creates a new RDD form an existing one. Transformations are lazy operations and only are executed when an action is called. When calling a transformation, a link is created between two RDDs, this happens successively until the action is executed. Then, all transformations are applied until the action. These links between transformations are edges in the Apache Spark\textsuperscript{TM}'s Directed Acyclic Graph.
 
 \begin{figure}[H]
 \centering
@@ -129,10 +135,12 @@ Applies a function f for all elements of this RDD.
 \subsubsection*{Amazon Data Pipeline} \label{data_pipeline}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/data_pipeline-logo.png}
+\caption{Amazon Data Pipeline logo}
 \end{figure}
 
-Amazon Data Pipeline\cite{data_pipeline} service helps running processes reliably and move data between Amazon Web Services Storage services. In the \thesis\ it is used to move data From \nameref{athena} or \nameref{s3} to \nameref{emr} and from \nameref{emr} back to \nameref{s3}.
+Amazon Data Pipeline\cite{data_pipeline} service helps running processes reliably and move data between Amazon Web Services Storage services. In the \thesis\ it is used to move data from \nameref{athena} or \nameref{s3} to \nameref{emr} and from \nameref{emr} back to \nameref{s3}.
 \\\\
 If, for any reason, the pipeline fails, this service retries the execution, if the execution fails constantly, the data pipeline stops and sends a failure notification to the owner.
 \\\\
@@ -141,7 +149,9 @@ Data Pipelines can also be scheduled to run every hour, every two hours, every d
 \subsubsection*{Amazon Elastic MapReduce} \label{emr}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/emr-logo.png}
+\caption{Amazon Elastic MapReduce logo}
 \end{figure}
 
 Amazon Elastic MapReduce\cite{emr} (EMR) provides a Hadoop\cite{hadoop} framework that makes easy, fast, and cost-effective to process vast amounts of data. As explained before, \nameref{apache_spark} runs in Hadoop. These clusters are prefect for running big data applications and pipelines.
@@ -154,12 +164,12 @@ The EMR configuration for each pipeline will be:
 \centering
 \begin{tabular}{|>{\raggedright\arraybackslash}p{5cm}|>{\raggedright\arraybackslash}p{5cm}|>{\raggedright\arraybackslash}p{3cm}|}
 \hline
-\textbf{Field}                        & \textbf{Description}                 & \textbf{Value}      \\ \hline
-\textbf{Release}                      & EMR version                          & \texttt{emr-5.12.0} \\ \hline
-\textbf{Cluster master instance type} & Instance type of the master cluster  & \texttt{m3.xlarge}  \\ \hline
-\textbf{Cluster core instance type}   & Instance type of the slaves clusters & \texttt{m3.xlarge}  \\ \hline
-\textbf{Cluster size}                 & Number of slaves clusters            & 6                   \\ \hline
-\textbf{Timeout}                      & Insurance to not run forever         & 5 hours             \\ \hline
+\textbf{Field}                        & \textbf{Description}         & \textbf{Value}      \\ \hline
+\textbf{Release}                      & EMR version                  & \texttt{emr-5.12.0} \\ \hline
+\textbf{Cluster master instance type} & Instance type of the master  & \texttt{m3.xlarge}  \\ \hline
+\textbf{Cluster core instance type}   & Instance type of the slaves  & \texttt{m3.xlarge}  \\ \hline
+\textbf{Cluster size}                 & Number of slaves clusters    & 6                   \\ \hline
+\textbf{Timeout}                      & Insurance to not run forever & 5 hours             \\ \hline
 \end{tabular}
 \caption{EMR configuration}
 \end{table}
@@ -182,10 +192,10 @@ M3 General Purpose Extra Large & \texttt{m3.xlarge} & 15.0 GiB        & 4       
 
 \subsection{Service} \label{service}
 
-The service is the middle layer of the \thesis. Simple Python\cite{python} Reads data written by the components in the \nameref{data_layer} layer and serves the data through an \nameref{ecs}.
+The service is the middle layer of the \thesis. A simple Python\cite{python} service reads data written by the components in the \nameref{data_layer} layer and serves the data through an \nameref{ecs}.
 % using Boto3\footnote{Boto\cite{boto3} is the Amazon Web Services (AWS) SDK for Python} 
 \\\\
-A \nameref{docker} container is created and managed by \nameref{ecs}. In this container a Python\cite{python} service is deployed.
+A \nameref{docker} container is created and managed by \nameref{ecs}. In this container the Python\cite{python} service is deployed.
 % with AIOHTTP\footnote{AIOHTTP\cite{aiohttp} is an Asynchronous HTTP Client/Server library for Python. Perfect for HTTP Servers.} 
 
 % \begin{figure}[H]
@@ -197,18 +207,22 @@ A \nameref{docker} container is created and managed by \nameref{ecs}. In this co
 \subsubsection*{Amazon Elastic Container Service} \label{ecs}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/ecs-logo.png}
+\caption{Amazon Elastic Container Service logo}
 \end{figure}
 
-Amazon Elastic Container Service, also known as ECS\cite{ecs}, is a container management service that supports Docker\nameref{docker}. It ease the container orchestration with a simple API.
+Amazon Elastic Container Service, also known as ECS\cite{ecs}, is a container management service that supports \nameref{docker}. It ease the container orchestration with a simple API.
 
 \subsubsection*{Docker} \label{docker}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/docker-logo.png}
+\caption{Docker logo}
 \end{figure}
 
-Docker\cite{docker} tool that creates a container where you can run whichever application you want with its environment. A Docker container can be created in a lot of machines, for example in an \nameref{ecs}.
+Docker\cite{docker} is tool that creates a container where you can run whichever application you want with its environment. A Docker container can be created in a lot of machines, for example in an \nameref{ecs}.
 
 % SUB SECTION 6.1.3
 
@@ -224,7 +238,7 @@ It is also ran in a \nameref{docker} container deployed in \nameref{ecs}.
 
 \section{Components}
 
-Once the technology each layer will use, lets define the code architecture of each component.
+Once the technology each layer will use is set, lets define the code architecture of each component.
 
 % SUB SECTION 6.2.1
 
@@ -232,7 +246,7 @@ Once the technology each layer will use, lets define the code architecture of ea
 
 The flight offer data pipeline reads timetables from \squad's ingest pipeline, stored in \nameref{unified-model} and group, map and filter to \nameref{flight-availablity-model}.
 \\\\
-\squad's Ingest Pipeline writes all the timetables in its \nameref{s3} bucket in very JSON\cite{json} alike format. \nameref{apache_spark} and the components of \squad\ that read routes from the result file line by line, each of those lines is a Unified Route. Luckily when Apache Spark reads a file i creates an RDD of String, one record per line; so when reading \squad's file, it will get an RDD of Unified Routes in JSON\cite{json} format.
+\squad's Ingest Pipeline writes all the timetables in its \nameref{s3} bucket in very JSON\cite{json} alike format. \nameref{apache_spark} and the components of \squad\ that read routes from the result file line by line, each of those lines is a Unified Route. Luckily when Apache Spark reads a file i creates an RDD of Strings, one record per line; so when reading \squad's file, it will get an RDD of Unified Routes in JSON\cite{json} format.
 \\\\
 For all data processing, the pipeline is split in well-defined stages. Each stage has a name to be identified and a function \texttt{run} that executes the Spark transformations and actions needed to complete its purpose. The Available Flights Pipeline is composed by six stages grouped in two \textit{sub-pipelines}:
 
@@ -242,12 +256,12 @@ This \textit{sub-pipeline} basically regroup Unified Routes data to a friendly m
 
 \begin{itemize}
     \item \textbf{Read Routes stage}: It reads the \texttt{version.txt} file from \squad's bucket, there it get the latest version of the timetables and read them, returning an Strings RDD.
-    \item \textbf{JSON to Route stage}: Maps from a String RDD to a Unified Route Class using \nameref{Gson}.
-    \item \textbf{Flights Flattening stage}: Flats all routes' series at date level, duplicating origins and destinations since each flight have the same route. There are three flattening, from series to series item, from series item to date sets and finally from date sets to single dates. Going from 64,000 routs to 75,000,000 flights. The amount of data increases a lot here.
+    \item \textbf{JSON to Route stage}: Maps from a String RDD to a Unified Route Class using \nameref{gson}.
+    \item \textbf{Flights Flattening stage}: Flats all routes' series at date level, duplicating origins and destinations of flights that have the same route. There are three flattening, from series to series item, from series item to date sets and finally from date sets to single dates. Going from 64,000 routes to 75,000,000 flights. The amount of data increases a lot in this point.
     \item \textbf{Group Routes stage}: After flattening at date level, flights are grouped by date. There is a lot of shuffling\footnote{Sharing data between different nodes or machines} which makes it a slow process.
 \end{itemize}
 
-Apart from these four stages, it has other to parse grouped routes by date objects to JSON\cite{json} and another to write it to \nameref{s3}, but since in the end those are not necessary, these two stages are disabled.
+Apart from these four stages, it has other to parse grouped routes by date objects to JSON\cite{json} and another to write it to \nameref{s3}, but those are not necessary, both stages are disabled.
 
 \subsubsection*{Summary \textit{sub-pipeline}}
 
@@ -263,12 +277,14 @@ Apart from these four stages, it has other to parse grouped routes by date objec
 \caption{Available flights pipeline architecture and data flow diagram}
 \end{figure}
 
-To end up doing applying this architecture, there have been a lot of alternatives during all the development of the Available Flights Pipeline.
+To end up doing this architecture, there have been a lot of alternatives during all the development of the Available Flights Pipeline.
 
 \subsubsection*{Amazon Relational Database Service} \label{rds}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/rds-logo.png}
+\caption{Amazon Relational Database Service logo}
 \end{figure}
 
 In the beginning, the idea was to write all data to Amazon RDS, Relational Database Service\cite{rds}. This service offers a relational database in the cloud that can be accessed very fast. But there are two important reasons thy this option has been discarded:
@@ -281,18 +297,18 @@ In the beginning, the idea was to write all data to Amazon RDS, Relational Datab
 \subsubsection*{Amazon DynamoDB} \label{dynamodb}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.2]{resources/dynamodb-logo.png}
+\caption{Amazon DynamoDB logo}
 \end{figure}
 
-Another idea about the database where the pipeline could write was Amazon RDS, Relational Database Service\cite{dynamodb}. This service offers a non-relational database in the cloud that can be accessed very fast. But there was one important reasons thy this alternative was discarded:
-
-\begin{itemize}
-    \item \textbf{Cost}: It is very expensive to have an DynamoDB, even more expensive than \nameref{rds}.
-\end{itemize}
+Another idea about the database where the pipeline could write was Amazon RDS, Relational Database Service\cite{dynamodb}. This service offers a non-relational database in the cloud that can be accessed very fast. But there was one important reasons thy this alternative was discarded: The \textbf{Cost}, it is very expensive to have an DynamoDB, even more expensive than \nameref{rds}.
+\\\\
+Having this in mind, after some brainstorming, the final solution was found:
 
 \subsubsection*{S3 and dates at month level} \label{month_version}
 
-The main problem of these pipeline that happens in the \nameref{user-searches-pipeline} as well, is that \textbf{versions are written every day} and does not delete anything to satisfy functional requirement of Historical data (\#8)
+The main problem of this pipeline, that happens in the \nameref{user-searches-pipeline} as well, is that \textbf{versions are written every day} and does not delete anything. So it satisfies the functional requirement of Historical data (\#8)
 \\\\
 \squad\ provides flights for one year ahead and every day the data is uploaded in a new file to S3, the \nameref{available-flights-pipeline} reads this file and gets all flights for all days in the next year and writes them to the Database. It would be very easy for the service then read with an SQL table like:
 
@@ -316,11 +332,12 @@ So, for instance, if the user queries for the evolution of the flights available
 \\\\
 Looks easy and simple, but the problem is that, as explained before, \nameref{rds} is very expensive. The only storage service left that does not take much time to develop is \nameref{s3}.
 \\\\
-Is very fast to write to S3, the whole data dump with more than 75 million flights can be written in less than a minute to a single flight, but how about the reading from the service? Boto3\footnote{Boto\cite{boto3} is the Amazon Web Services (AWS) SDK for Python, explained in \nameref{boto3} on page \pageref{boto3}} takes more or less an eighth of a second to access the file and more or less a quarter second to read the whole file. This is fine if the service just needs to read one file, but as explained before, the pipeline writes one file every day. So, for one query, the worst case scenario is 365 (one year) files to open and read. In other words, more than 4 minutes for the service to response a query. This does not satisfy the fourth non-functional requirement of Speed and Latency.
+Is very fast to write to S3, the whole data dump with more than 75 million flights can be written in less than a minute in a \textbf{single file}, but how about the reading from the service? Boto\footnote{Boto is the Amazon Web Services (AWS) SDK for Python, explained in \nameref{boto3} on page \pageref{boto3}} takes more or less an eighth of a second to access the file and more or less a quarter second to read the whole file. This is fine if the service just needs to read one file, but as explained before, the pipeline writes one file every day. So, for one query, in the worst case scenario, there are 365 files to open and read (days in one year). In other words, more than 4 minutes for the service to response a query. This does not satisfy the fourth non-functional requirement of Speed and Latency.
 \\\\
-After analyzing the data, one solution was to only write changes, so there are no that big amount of files to read, but it was discarded because user searches change every day, not like flights, and the same problem would happen when reading from the other pipeline.
-\\\\
-In the end, the final solution was to write one file per record, and inside it all the data about the flights for that route in that date. That way, \nameref{boto3} could run the \texttt{list\_bucket} function, that list all objects under the given key.
+The solution was to write one file per record, and inside it all the data about the flights for that route in that date. That way, \nameref{boto3} could run the \texttt{list\_bucket} function, that list all objects under the given key. This key, must contain the basic model's information:
+\texttt{\$ORIGIN-\$DESTINATION/ \$DATE/ \$VERSION\_DATE-\$COUNT.json}
+
+\break
 
 \begin{verbatim}
 BCN-LGW/
@@ -342,9 +359,11 @@ BCN-EDI/
                    2018-06-15-25.json
 \end{verbatim}
 
-The problem with that is that there are 75 million different records to write. It would take more than one day for the pipeline to write the whole data, very expensive because of the \nameref{emr} cluster running time and very slow. 
+The problem with this implementation, is that there are 75 million different records to write. It would take more than one day for the pipeline to write the whole data, very slow and expensive because of the EMR cluster running time.
 \\\\
-After checking the user stories and the purpose of this tool, a final decision was made: Data was going to be store that way, one record per day, but the number of records will be reduced to much \textbf{grouping flights at month level} instead of at day level. The final S3 directory structure would be:
+After analyzing the data, one solution was to only write changes, so there are no that big amount of files to write, but it was discarded because user searches change every day, not like flights, and the same problem would happen when writing in the other pipeline.
+\\\\
+Finally, checking the user stories and the purpose of this tool, a final decision was made: Data was going to be store that way, one record per day, but the number of records will be reduced \textbf{grouping flights by months} instead of having them by day. The final S3 directory structure would be:
 
 \begin{verbatim}
 BCN-LGW/
@@ -372,15 +391,15 @@ With this design, the service takes less than a second to get all the data and t
 
 The user demand is obtained from \textbf{user searches} table in \nameref{athena}. Then the results of the Athena query are mapped to the same data model of the stored in S3 by the \nameref{available-flights-pipeline}.
 \\\\
-The first problem found in this pipeline was that the results from Athena were stored in a CSV\cite{csv} in S3 and each row had a record with a format very similar than JSON\cite{json}. Those records could not be parsed to an object using any library\footnote{Solution explained in \nameref{regex} on page \pageref{regex}}.
+The first problem found in this pipeline was that the results from Athena were stored in a CSV\cite{csv} in S3, each row had a record with a format similar to JSON\cite{json}. Those records could not be parsed to an object using any library. Using RegEx\cite{regex} applied to rows treated as a String, the result were obtained.
 \\\\
-Another problem found is that as more data you request, more time it gets to finish the query, and it is not a lineal progression. To solve that, the query was split in four sub-queries. From one query that requested all the user flight searches for one day to four that request all user flight searches in hour ranges 00:00-05:59, 06:00-11:59, 12:00-17:59 and 18:00-23:59. Usually the resultant files take \textbf{30 gigabytes}.
+Another problem found is that as more data you request, more time it gets to finish the query, and it is not a lineal progression. To solve that, the query was split in four sub-queries. Four that request all user flight searches in hour ranges 00:00-05:59, 06:00-11:59, 12:00-17:59 and 18:00-23:59. Usually the resultant files take \textbf{30 gigabytes} in total.
 \\\\
 \nameref{user-searches-pipeline} is not split in \textit{sub-pipelines}. It has four stages in total:
 
 \begin{itemize}
-    \item \textbf{Athena Reader stage}: Queries Athena for user searches. Athena writes automatically to S3 and returns the file name.
-    \item \textbf{S3 Reader stage}: Gets the file name of the query result and reads it. CSV\cite{csv} to String RDD.
+    \item \textbf{Athena Reader stage}: Queries Athena for user searches. Athena writes automatically to S3 and returns the file name. Four executions, one per hour range.
+    \item \textbf{S3 Reader stage}: Gets the file name of the query result and reads it. CSV\cite{csv} to String RDD. Four executions too, one per file.
     \item \textbf{Search Query stage}: Gets the records from the Athena records, filters them by kind of search an other parameters, maps each record to the desired model and groups by route.
     \item \textbf{Write Records stage}: Writes into \nameref{s3} using \nameref{scala_aws}.
 \end{itemize}
@@ -397,7 +416,7 @@ Another problem found is that as more data you request, more time it gets to fin
 
 Once all the data is processed every day and stored into \nameref{s3}, it has to be served in an HTTP\cite{http} API.
 \\\\
-The Comparison Servie's API provides two endpoints, one for the comparison and another one for a single source (flights or searches) request\footnote{The \textit{endpoint} tag can be \texttt{sandbox} or \texttt{prod}. Learn more about those environments in section \nameref{environments} on page \pageref{environments}.}. The main class, API Handler, execute a function when the endpoint is queried and uses an AWS Adapter that is directly connected to \nameref{boto3}. The API Handler returns a set of records in JSON format.
+The Comparison Servie's API provides two endpoints, one for the comparison and another one for a single source request (flights or searches)\footnote{The \textit{environment} field can be \texttt{sandbox} or \texttt{prod}. Learn more about those environments in section \nameref{environments} on page \pageref{environments}.}. The main class, API Handler, execute a function when the endpoint is queried and uses an AWS Adapter\footnote{Design pattern explained in \nameref{appendix_b} on page \pageref{appendix_b}.} that is directly connected to \nameref{boto3}. The API Handler returns a set of records in JSON format.
 
 \begin{figure}[H]
 \centering
@@ -455,14 +474,16 @@ RESPONSE
 }
 \end{verbatim}
 
-In this response, the results object contains an array of records, each one with the date in milliseconds, the date in human format (version), amount of searches in this case (count), and a key that is the same for all the results, is the same as the query. This data has enough detail for the developer start making some analysis.
+In this response, the results object contains an array of records, each one with the date in milliseconds, the date in human format (version), amount of searches or available flights (count), and a key that is the same for all the results and the same as the query. This data has enough detail for the developer start making some analysis.
 \\\\
 The first idea for the comparison service, was using an AWS Lambda Function and exposing it through AWS API Gateway. But it ended up in \nameref{ecs} with a \company\ gateway.
 
 \subsubsection*{Amazon Lambda} \label{lambda}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/lambda-logo.png}
+\caption{Amazon Lambda logo}
 \end{figure}
 
 Is one of the most uses service used bu Amazon Web Service. It is a \textit{serverless} system that lets you run code easily.
@@ -483,15 +504,15 @@ This service looked very promising but was not used because of API Gateways.
 
 Simple service that provides a front door for whatever other Amazon's service.
 \\\\
-\company\ reached the limit of API Gateways\cite{api-gateway}. Using a Lambda I would have open an special request in the company to get a new API Gateway, this request would have been provably reject because API Gateways are reserved for very specific uses. That is why \nameref{lambda} and API Gateway was not used for the service.
+\company\ reached the limit of API Gateways\cite{api-gateway}. Using a Lambda I would have open an special request in the company to get a new API Gateway, this request would have been provably reject because API Gateways are reserved for very specific uses. That is why \nameref{lambda} and API Gateway was not used for the comparison service.
 
-\newpage
+%\newpage
 
 % SUB SECTION 6.2.4
 
 \subsection{Web UI} \label{web-ui}
 
-Finally, in the front end of the application, the Web UI. A simple website with only one page, based in the Composite Pattern becomes a responsive application with a high code scalability and maintainability.
+Finally, in the front end of the application: the Web UI. A simple website with only one page, based in the Composite Pattern\footnote{Design pattern explained in \nameref{appendix_b} on page \pageref{appendix_b}.} becomes a responsive application with a high code scalability and maintainability.
 
 \subsubsection*{Architecture}
 
@@ -545,7 +566,7 @@ All functional requirements except eight must be satisfied in the Web UI. Let's 
     \caption{Demo of the search multiple available flights functionality.}
     \end{figure}
 
-    \item \textbf{Search multiple searches values}: \textit{Be able to query and display multiple user searches values for different routes in the same chart, easing the comparison between both queries. For example: Route A-B in August 2017 shows more searches than route A-B in December 2017 from January to June, but A-B in December has more than in August from July until December.}
+    \item \textbf{Search multiple searches values}: \textit{Be able to query and display multiple user searches values for different routes in the same chart, easing the comparison between both queries. For example: Route A-B in August 2017 shows more searches than route A-B in December 2017 from January to June.}
     \\\\
     Once the user has searched for user searches, it can search again and the results will appear in the chart.
     \begin{figure}[H]

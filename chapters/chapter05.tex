@@ -16,7 +16,9 @@ The data model must be also subject to change and pretty clear, to fulfill non-f
 
 \section{Routes model} \label{routes_model}
 
-\squad's pipeline, writes the data in \textbf{Single Flight Number} model. This model is not useful for this project because of the \nameref{sfn-date-set} schema. The timetable pipeline can also write following the \textbf{unified timetable} schema, this model presents the final master set of single flight number timetables that have been merged and de-duplicated from multiple sources. Dates schema are compatible with the \thesis\ purpose.
+\squad's pipeline, writes the data in \textbf{Single Flight Number} model. This model is not useful for this project because of the \nameref{sfn-date-set} schema.
+\\\\
+The timetable pipeline can also write following the \textbf{unified timetable} schema, this model presents the final set of single flight number timetables that have been merged and de-duplicated from multiple sources. Dates schema are compatible with the \thesis\ needs.
 
 \subsection{Single Flight Number Object Model} \label{sfn-model}
 
@@ -58,7 +60,7 @@ Represents a SFN timetable for the year ahead.
 
 \subsubsection*{SFN Timetable Series Item}
 
-A Timetable Series Item represents a specific configurations of operating carrier, stops and times of day for a given SFN timetable. For example for a given Marketing Carrier / Flight Number, the Operating Carrier or times of day may change through the year.
+A Timetable Series Item represents a specific configurations of operating carrier, stops and times of day for a given SFN timetable.
 
 \begin{table}[H]
 \centering
@@ -106,7 +108,7 @@ Since the dates are represented by week days as an enumeration (\textit{mon}, \t
 
 \subsection{Unified Timetable Object Model} \label{unified-model}
 
-In the timetable pipeline owned by \squad\ first maps all data to Unified model then it is mapped to the final Single Flight Number Timetable model. Unified model is very similar than \nameref{sfn-model}, it uses \textbf{Airport object} instead of an integer and a set of strings in date format \texttt{YYYY-MM-DD} in date sets, availability:
+The timetable pipeline owned by \squad\ first maps all data to Unified model then it is mapped to the final Single Flight Number Timetable model. Unified model is very similar than \nameref{sfn-model}, but it uses \textbf{Airport object} instead of an integer and a set of strings in date format \texttt{YYYY-MM-DD} in date sets' availability:
 
 \begin{figure}[H]
 \centering
@@ -153,7 +155,7 @@ The flights availability records will be grouped by route and then by date.
 
 Flights Availability and \nameref{unified-uml} looks very similar. The main difference is that a route in Unified model contains a set of flights but a set of dates in Flight Availability.
 \\\\
-Date class contains a strings in date format \texttt{YYYY-MM-DD} and the number of available flights on that date. This last field is the same as the size of the set of flights it is composed by. The flight availability model has \textbf{a lot of duplicated values}, one flight operates a lot of dates and it is grouped by date\footnote{All flights data transformations explained in \nameref{fop-data-transformations}}.
+Date class contains a strings in date format \texttt{YYYY-MM-DD} and the number of available flights on that date. This last field is the same as the size of the set of flights it is composed by. The flight availability model has \textbf{a lot of duplicated values}, one flight operates a lot of dates and it is grouped by date.
 
 %-----------------
 %   SECTION 5.4
@@ -161,7 +163,7 @@ Date class contains a strings in date format \texttt{YYYY-MM-DD} and the number 
 
 \section{User Searches Model}
 
-The user searches model has been simplified and a lot of fields from the original model has been removed. Since the amount of data of user searches increases on the order of millions per day, the model contains the basic data.
+The user searches model has been simplified and a lot of fields from the original model has been removed. Since the amount of data of user searches increases on the order of millions per day, the model contains the basic needed fields.
 
 \subsubsection*{User Searches Route}
 

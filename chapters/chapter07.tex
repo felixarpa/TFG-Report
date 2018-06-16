@@ -8,38 +8,44 @@
 
 Once the system is designed and its architecture defined, the implementation took an important part of the time. The \thesis\ used a lot of frameworks and libraries that eased the development. Some of them has been already explained, like \nameref{apache_spark} that offers an API to process big data dumps and it parallelizes the process automatically.
 \\\\
-First of all, lets check the main programming languages used in this project and then all libraries and frameworks component by component, finally the tools used for the development.
+First of all, lets check the main programming languages used in this project and then all libraries and frameworks component by component, finally the tools used for the development and deployment.
 
 \section{Programming languages}
 
-\subsection*{Scala\cite{scala}}
+\subsection*{Scala\cite{scala}} \label{scala}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/scala-logo.png}
+\caption{Scala logo}
 \end{figure}
 
-Scala (\texttt{.scala} as file extension) is multi-paradigm programming language compiled by the Java Virtual Machine\cite{jvm}. Its main paradigms are \textbf{functional}, very useful for \nameref{apache_spark}, Java\cite{java} also provides this since version 8, but in Scala it is much easier to write and debug; Scala is also object-oriented, imperative and concurrent.
+Scala (\texttt{.scala} as file extension) is multi-paradigm programming language compiled by the Java Virtual Machine\cite{jvm}. Its main paradigms are \textbf{functional} (very useful for \nameref{apache_spark}, Java\cite{java} also provides this since version 8, but in Scala it is much easier to write and debug) object-oriented, imperative and concurrent.
 \\\\
-Scala is the preferred language by the Apache Software Foundation for \nameref{apache_spark}, that is why it is the main language used in both pipelines, \nameref{available-flights-pipeline} and \nameref{user-searches-pipeline}. The latest \nameref{apache_spark} is for Scala, then it usually comes out for Java and finally for Python.
+Scala is the preferred language by the Apache Software Foundation for \nameref{apache_spark}, that is why it is the main language used in both pipelines, \nameref{available-flights-pipeline} and \nameref{user-searches-pipeline}. The latest \nameref{apache_spark} API is for Scala, then it usually comes out for Java and finally for Python.
 \\\\
 I have never programmed in Scala before this project, but it was very fast and easy to learn. Knowing Java, the syntax is not much different and, usually, more intuitive.
 
 \subsection*{Python\cite{python}}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/python-logo.png}
+\caption{Python logo}
 \end{figure}
 
-Python (with file extension \texttt{.py}) is the language used for the service. Python 3.6 is the version used instead of 2.7, which is very different, because Python2.7 will not have support anymore in a few months.
+Python (with file extension \texttt{.py}) is the language used for the service. Python 3.6 is the version used instead of 2.7, which is very different. Python2.7 will not have support anymore in a few months.
 \\\\
-The syntax of python is different than C based languages and allows a lot of \textit{tricks} that the developer cannot do in most programming languages, for instance: \texttt{array[-1]} gets the last element. It is the only language used in the \nameref{comparison_service}, thanks to Python's flexibility; imperative, functional, object-oriented, procedure and reflective paradigms; duck, string and dynamic typing and compatibility with lost of technologies makes the service easy to be implemented in few lines.
+The syntax of python is different than C based languages and allows a lot of \textit{tricks} that the developer cannot do in most programming languages, for instance: \texttt{a[-1]} gets the last element of the array \texttt{a}. It is the only language used in the \nameref{comparison_service}, thanks to Python's flexibility; imperative, functional, object-oriented, procedure and reflective paradigms; duck, string and dynamic typing and compatibility with lost of technologies makes the service easy to be implemented in few lines.
 
 \subsection*{JavaScript\cite{js}}
 
-Often abbreviated as JS, JavaScript is an interpreted programming language core of the World Wide Web technologies all along with HTML\cite{html} and CSS\cite{css}. It is used in the \nameref{web-ui} and, like Python, it has compatibility with a lot of technologies, \nameref{axios}, \nameref{reactjs} and \nameref{vega} for this project.
+Often abbreviated as JS, JavaScript is an interpreted programming language core of the World Wide Web technologies all along with HTML\cite{html} and CSS\cite{css}. It is used in the \nameref{web-ui} and, like Python, it has compatibility with a lot of technologies, \nameref{axios}, \nameref{reactjs} and \nameref{vega}.
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/www-tech-logos.jpeg}
+\caption{HTML, JS and CSS logos}
 \end{figure}
 
 \section{External libraries and frameworks}
@@ -52,11 +58,11 @@ Thanks to that Software Development Kit both pipelines can write to the \nameref
 
 \subsection*{Gson\cite{gson}} \label{gson}
 
-Most data is usually serialized in JSON\cite{json} format, to deserialize it and get an Scala object, both pipelines use Google's library: Gson.
+Most data is usually serialized in JSON\cite{json} format, to deserialize it and get an Scala object, the Available Flights Pipeline uses Google's library Gson.
 
 \subsection*{Boto3\cite{boto3}} \label{boto3}
 
-This Python library is also very important for the project. It is the Amazon Web Service's Software Development Kit for Python. It is not as complete as the Java AWS SDK or the Scala AWS SDK but the \nameref{s3} API is more than enough for the Comparison Service.
+This Python library is also very important for the project. It is the Amazon Web Service's Software Development Kit for Python. It is not as complete as the Java AWS SDK or the Scala AWS SDK but the \nameref{s3} API it provides is more than enough for the Comparison Service.
 
 \subsection*{aiohttp\cite{aiohttp}} \label{aiohttp}
 
@@ -87,20 +93,57 @@ The two main tools used for the development of the \thesis\ are IntelliJ IDEA by
 \subsection*{IntelliJ IDEA by JetBrains\cite{intellij}}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/intellij-logo.png}
+\caption{IntelliJ IDEA logo}
 \end{figure}
 
-\textit{Capable and Ergonomic IDE for JVM}. IntelliJ is the preferred IDE\cite{ide} in \company. Ease the development of Java projects and, with a Scala Building Tool plugin IntelliJ eases the development of Scala projects. This Integrated Development Environment has been used for writing, testing, executing and assembling \nameref{available-flights-pipeline} and \nameref{user-searches-pipeline}.
+\textit{Capable and Ergonomic IDE for JVM}. IntelliJ is the preferred IDE\cite{ide} in \company. Ease the development of Java projects and, with a Scala Building Tool plugin IntelliJ eases the development of Scala projects. This Integrated Development Environment has been used for writing, testing, executing and assembling \nameref{available-flights-pipeline} and \nameref{user-searches-pipeline} projects.
 
 \subsection*{Sublime Text 3\cite{sublimetext}}
 
 \begin{figure}[H]
+\centering
 \includegraphics[scale=0.1]{resources/sublime-logo.png}
+\caption{Sublime Text 3 logo}
 \end{figure}
 
 Sublime Text is not an IDE, is just a text editor for code, markup and prose. Sophisticated and full of features for the developers, makes easier the development of software, systems and applications that do not have an specific IDE or that the existing development environment complicates the project. That is why Sublime Text 3 has been used for the \nameref{comparison_service} and the \nameref{web-ui}.
 
 \section{Deployment}
+
+The deployment of the software was automatic when the new code was pushed to its \texttt{git} branch. Deployed to sandbox if the branch was a feature branch, deployed to prod if the branch was \texttt{master}.
+\\\\
+This process was automatic thanks to Drone. This tool can deploy to Amazon Web Service if there is an stack available created by the Amazon CloudFormation. In order to track the deployment and scheduled executions of the pipelines, the project have \nameref{sns} configured.
+
+\subsection*{Drone}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.1]{resources/drone-logo.png}
+\caption{Drone logo}
+\end{figure}
+
+Drone\cite{drone} is an open source Continuous Delivery platform that automates your testing and release workflows. Every repository has a \texttt{.drone.yml} file where the release workflow is described. The GitLab repository is linked with Drone and when the code is pushed Drone automatically runs the commands set for that specific \texttt{git} action.
+
+\subsection*{Amazon CloudFormation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.1]{resources/cf-logo.png}
+\caption{Amazon CloudFormation logo}
+\end{figure}
+
+
+\subsection*{Amazon Simple Notification Service} \label{sns}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.1]{resources/sns-logo.png}
+\caption{Amazon Simple Notification Service logo}
+\end{figure}
+
+
 
 
 
