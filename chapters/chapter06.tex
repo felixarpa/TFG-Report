@@ -248,7 +248,7 @@ The flight offer data pipeline reads timetables from \squad's ingest pipeline, s
 \\\\
 \squad's Ingest Pipeline writes all the timetables in its \nameref{s3} bucket in very JSON\cite{json} alike format. \nameref{apache_spark} and the components of \squad\ that read routes from the result file line by line, each of those lines is a Unified Route. Luckily when Apache Spark reads a file i creates an RDD of Strings, one record per line; so when reading \squad's file, it will get an RDD of Unified Routes in JSON\cite{json} format.
 \\\\
-For all data processing, the pipeline is split in well-defined stages. Each stage has a name to be identified and a function \texttt{run} that executes the Spark transformations and actions needed to complete its purpose. The Available Flights Pipeline is composed by six stages grouped in two \textit{sub-pipelines}:
+For all data processing, the pipeline is split in well-defined stages. Each stage is a Singleton\footnote{Design pattern explained in \nameref{appendix_b} on page \pageref{appendix_b}.} that has a name to be identified and a function \texttt{run} that executes the Spark transformations and actions needed to complete its purpose. The Available Flights Pipeline is composed by six stages grouped in two \textit{sub-pipelines}:
 
 \subsubsection*{Routes \textit{sub-pipeline}}
 

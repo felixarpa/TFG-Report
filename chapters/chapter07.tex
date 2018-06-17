@@ -112,9 +112,9 @@ Sublime Text is not an IDE, is just a text editor for code, markup and prose. So
 
 \section{Deployment}
 
-The deployment of the software was automatic when the new code was pushed to its \texttt{git} branch. Deployed to sandbox if the branch was a feature branch, deployed to prod if the branch was \texttt{master}.
+The deployment of the software is automatic when the new code is pushed to its \texttt{git} branch. Deploying to sandbox if the branch is a feature branch, deploying to prod if the branch is \texttt{master}.
 \\\\
-This process was automatic thanks to Drone. This tool can deploy to Amazon Web Service if there is an stack available created by the Amazon CloudFormation. In order to track the deployment and scheduled executions of the pipelines, the project have \nameref{sns} configured.
+This process is automatic thanks to Drone. This tool can deploy to Amazon Web Service if there is an stack available created by the Amazon CloudFormation. In order to track the deployment and scheduled executions of the pipelines, the project have \nameref{sns} configured.
 
 \subsection*{Drone}
 
@@ -124,7 +124,7 @@ This process was automatic thanks to Drone. This tool can deploy to Amazon Web S
 \caption{Drone logo}
 \end{figure}
 
-Drone\cite{drone} is an open source Continuous Delivery platform that automates your testing and release workflows. Every repository has a \texttt{.drone.yml} file where the release workflow is described. The GitLab repository is linked with Drone and when the code is pushed Drone automatically runs the commands set for that specific \texttt{git} action.
+Drone\cite{drone} is an open source Continuous Delivery platform that automates your testing and release workflows. Every repository has a \texttt{.drone.yml} file where the release workflow is described. The GitLab repository is linked to Drone and when the code is pushed, Drone automatically runs the commands set for that specific \texttt{git} action.
 
 \subsection*{Amazon CloudFormation}
 
@@ -134,14 +134,38 @@ Drone\cite{drone} is an open source Continuous Delivery platform that automates 
 \caption{Amazon CloudFormation logo}
 \end{figure}
 
+Cloud Formation\cite{cf} allows the developer create a AWS stack. Posting a configuration file describing all the resources it is going to use, Cloud Formation creates and link them, so it is easier to work with multiple resources at the same time.
+\\\\
+Pipelines' cloud formation have similar parameters:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|>{\raggedright\arraybackslash}p{4.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{5cm}|}
+\hline
+\textbf{Field}                         & \textbf{Description}               & \textbf{Value}               \\ \hline
+\textbf{Contact}                       & Main contact for this Stack        & felix.arribas@skyscanner.net \\ \hline
+\textbf{Project}                       & Project's name                     & heatmap                      \\ \hline
+\textbf{Field}                         & \textbf{Description}               & \textbf{Value}               \\ \hline
+\textbf{EMRClusterCore InstanceType}   & Instance type of the master        & \texttt{m3.xlarge}           \\ \hline
+\textbf{EMRClusterMaster InstanceType} & Instance type of the slaves        & \texttt{m3.xlarge}           \\ \hline
+\textbf{EMRClusterSize}                & Number of slaves clusters          & 6                            \\ \hline
+\textbf{EMRRelease}                    & EMR version                        & \texttt{emr-5.12.0}          \\ \hline
+\textbf{PipelineKickOff}               & Starting date of the data pipeline & 2018-04-12T16:00:00          \\ \hline
+\textbf{Schedule}                      & Scheduling of the date pipeline    & 1 day                        \\ \hline
+\end{tabular}
+\caption{Cloud Formation common parameters of both pipelines}
+\end{table}
+
+Apart from these parameters, the Cloud Formation file also sets an \nameref{sns} that mail \textit{Contact} when the pipeline succeeds or fails.
 
 \subsection*{Amazon Simple Notification Service} \label{sns}
-
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.1]{resources/sns-logo.png}
 \caption{Amazon Simple Notification Service logo}
 \end{figure}
+
+Amazon Simple Notification Service\cite{sns}, also known as SNS, is a flexible, fully managed pub/sub messaging and mobile notifications service for coordinating the delivery of messages to subscribing endpoints and clients. Not only for mobile notifications, it can notify other AWS resources, like \nameref{lambda}, or send other kind of notifications, like \textbf{e-mails}.
 
 
 
