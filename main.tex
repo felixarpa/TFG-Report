@@ -118,6 +118,7 @@ headsepline, % Uncomment to get a line under the header
 \newcolumntype{T}{m{12cm}}
 
 \newcommand\tab[1][0.75cm]{\hspace*{#1}}
+\newcommand*\NewPage{\newpage\null\thispagestyle{empty}\newpage}
 
 
 \colorlet{punct}{red!60!black}
@@ -212,6 +213,7 @@ headsepline, % Uncomment to get a line under the header
 \vfill
 \end{center}
 \end{titlepage}
+\NewPage
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT
@@ -231,13 +233,13 @@ This project wants to help to solve this problem, providing a visual comparison 
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
-
+\NewPage
 \tableofcontents
 
 %----------------------------------------------------------------------------------------
 %   THESIS CONTENT
 %----------------------------------------------------------------------------------------
-
+\NewPage
 \mainmatter
 
 \pagestyle{thesis}
@@ -254,16 +256,17 @@ This project wants to help to solve this problem, providing a visual comparison 
 \include{chapters/chapter10}
 \include{chapters/chapter11}
 
-Special thanks to \textbf{Gary Fernie}, Javier Arias, Francisco Lopez, Esteve Julià, José Durães, Daniel Costa, Susana Carrera, Jen Agernton
+Special thanks to \textbf{Gary Fernie}, Javier Arias, Francisco Lopez, Esteve Julià, José Durães, Susana Carrera, Jen Agernton
 
 %----------------------------------------------------------------------------------------
+\NewPage
 
-\cleardoublepage
+% \cleardoublepage
 % \phantomsection
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures % Prints the list of figures
 
-\cleardoublepage
+% \cleardoublepage
 % \phantomsection
 \addcontentsline{toc}{chapter}{\listtablename}
 \listoftables % Prints the list of tables
@@ -271,19 +274,20 @@ Special thanks to \textbf{Gary Fernie}, Javier Arias, Francisco Lopez, Esteve Ju
 %----------------------------------------------------------------------------------------
 %   BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
-
+\NewPage
 \printbibliography[heading=bibintoc]
 
 %----------------------------------------------------------------------------------------
 %   THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
-
+\NewPage
 \appendix % Cue to tell LaTeX that the following "chapters" are Appendices
 
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
 \include{appendices/appendixA}
+\NewPage
 \include{appendices/appendixB}
 
 \end{document} 

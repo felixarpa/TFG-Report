@@ -29,6 +29,11 @@ Use the Singleton pattern when
 
 \subsection*{Structure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{diagrams/singleton.png}
+\end{figure}
+
 \subsection*{Participants}
 
 \begin{itemize}
@@ -76,7 +81,12 @@ Classes for elementary geometric shapes like LineShape and PolygonShape are rath
 How can existing and unrelated classes like TextView work in an application that expects classes with a different and incompatible interface? We could change the TextView class so that it conforms to the Shape interface, but that isn't an option unless we have the toolkit's source code. Even if we did, it wouldn't make sense to change TextView; the toolkit shouldn't have to adopt domain-specific interfaces just to make one application work.
 \\\\
 Instead, we could define TextShape so that it adapts the TextView interface to Shape's. We can do this in one of two ways: (1) by inheriting Shape's interface and TextView's implementation or (2) by composing a TextView instance within a TextShape and implementing TextShape in terms of TextView's interface. These two approaches correspond to the class and object versions of the Adapter pattern. We call TextShape an adapter.
-\\\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{diagrams/adapter_motivation.png}
+\end{figure}
+
 This diagram illustrates the object adapter case. It shows how BoundingBox requests, declared in class Shape, are converted to GetExtent requests defined in TextView. Since TextShape adapts TextView to the Shape interface, the drawing editor can reuse the otherwise incompatible TextView class.
 \\\\
 Often the adapter is responsible for functionality the adapted class doesn't provide. The diagram shows how an adapter can fulfill such responsibilities. The user should be able to "drag" every Shape object to a new location interactively, but TextView isn't designed to do that. TextShape can add this missing functionality by implementing Shape's CreateManipulator operation, which returns an instance of the appropriate Manipulator subclass.
@@ -96,7 +106,17 @@ Use the Adapter pattern when
 
 A class adapter uses multiple inheritance to adapt one interface to another:
 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{diagrams/adapter_structure_a.png}
+\end{figure}
+
 An object adapter relies on object composition:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{diagrams/adapter_structure_b.png}
+\end{figure}
 
 \subsection*{Participants}
 
@@ -140,6 +160,29 @@ An object adapter
     \item makes it harder to override Adaptee behavior. It will require subclassing Adaptee and making Adapter refer to the subclass rather than the Adaptee itself.
 \end{itemize}
 
+Here are other issues to consider when using the Adapter pattern:
+\begin{enumerate}
+
+    \item How much adapting does Adapter do? Adapters vary in the amount of work they do to adapt Adaptee to the Target interface. There is a spectrum of possible work, from simple interface conversion—for example, changing the names of operations—to supporting an entirely different set of operations. The amount of work Adapter does depends on how similar the Target interface is to Adaptee's.
+
+    \item Pluggable adapters. A class is more reusable when you minimize the assumptions other classes must make to use it. By building interface adaptation into a class, you eliminate the assumption that other classes see the same interface. Put another way, interface adaptation lets us incorporate our class into existing systems that might expect different interfaces to the class. ObjectWorks/Smalltalk [Par90] uses the term pluggable adapter to describe classes with built-in interface adaptation.
+    \\\\
+    Consider a TreeDisplay widget that can display tree structures graphically. If this were a special-purpose widget for use in just one application, then we might require the objects that it displays to have a specific interface; that is, all must descend from a Tree abstract class. But if we wanted to make TreeDisplay more reusable (say we wanted to make it part of a toolkit of useful widgets), then that requirement would be unreasonable. Applications will define their own classes for tree structures. They shouldn't be forced to use our Tree abstract class. Different tree structures will have different interfaces.
+    \\\\
+    In a directory hierarchy, for example, children might be accessed with a GetSubdirectories operation, whereas in an inheritance hierarchy, the corresponding operation might be called GetSubclasses. A reusable TreeDisplay widget must be able to display both kinds of hierarchies even if they use different interfaces. In other words, the TreeDisplay should have interface adaptation built into it.
+    \\\\
+    We'll look at different ways to build interface adaptation into classes in the Implementation section.
+
+    \item Using two-way adapters to provide transparency. A potential problem with adapters is that they aren't transparent to all clients. An adapted object no longer conforms to the Adaptee interface, so it can't be used as is wherever an Adaptee object can. Two-way adapters can provide such transparency. Specifically, they're useful when two different clients need to view an object differently.
+    \\\
+    Consider the two-way adapter that integrates Unidraw, a graphical editor framework [VL90], and QOCA, a constraint-solving toolkit [HHMV92]. Both systems have classes that represent variables explicitly: Unidraw has StateVariable, and QOCA has ConstraintVariable. To make Unidraw work with QOCA, ConstraintVariable must be adapted to StateVariable; to let QOCA propagate solutions to Unidraw, StateVariable must be adapted to ConstraintVariable.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{diagrams/adapter_consequence.png}
+    \end{figure}
+    The solution involves a two-way class adapter ConstraintStateVariable, a subclass of both StateVariable and ConstraintVariable, that adapts the two interfaces to each other. Multiple inheritance is a viable solution in this case because the interfaces of the adapted classes are substantially different. The two-way class adapter conforms to both of the adapted classes and can work in either system.
+\end{enumerate}
+
 \section{Composite}
 
 \subsection*{Intent}
@@ -151,17 +194,26 @@ Compose objects into tree structures to represent part-whole hierarchies. Compos
 Graphics applications like drawing editors and schematic capture systems let users build complex diagrams out of simple components. The user can group components to form larger components, which in turn can be grouped to form still larger components. A simple implementation could define classes for graphical primitives such as Text and Lines plus other classes that act as containers for these primitives.
 \\\\
 But there's a problem with this approach: Code that uses these classes must treat primitive and container objects differently, even if most of the time the user treats them identically. Having to distinguish these objects makes the application more complex. The Composite pattern describes how to use recursive composition so that clients don't have to make this distinction.
-\\\\
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{diagrams/composite_motivation.png}
+\end{figure}
+
 The key to the Composite pattern is an abstract class that represents both primitives and their containers. For the graphics system, this class is Graphic. Graphic declares operations like Draw that are specific to graphical objects. It also declares operations that all composite objects share, such as operations for accessing and managing its children.
 \\\\
 The subclasses Line, Rectangle, and Text (see preceding class diagram) define primitive graphical objects. These classes implement Draw to draw lines, rectangles, and text, respectively. Since primitive graphics have no child graphics, none of these subclasses implements child-related operations.
 \\\\
 The Picture class defines an aggregate of Graphic objects. Picture implements Draw to call Draw on its children, and it implements child-related operations accordingly.
 \\\\
-156
 Because the Picture interface conforms to the Graphic interface, Picture objects can compose other Pictures recursively.
 \\\\
 The following diagram shows a typical composite object structure of recursively composed Graphic objects:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{diagrams/composite_motivation_s.png}
+\end{figure}
 
 \subsection*{Applicability}
 
@@ -173,7 +225,17 @@ Use the Composite pattern when
 
 \subsection*{Structure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{diagrams/composite_structure.png}
+\end{figure}
+
 A typical Composite object structure might look like this:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{diagrams/composite_structure_s.png}
+\end{figure}
 
 \subsection*{Participants}
 

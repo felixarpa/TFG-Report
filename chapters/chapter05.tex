@@ -30,7 +30,7 @@ Represents a route between 2 airports and the SFNs timetable that are available 
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\begin{tabular}{|p{2.5cm}|p{4cm}|p{2.5cm}|p{2cm}|p{1.2cm}|}
 \hline
 \textbf{Field}       & \textbf{Description}                                 & \textbf{Data Type}           & \textbf{Required} & \textbf{Key} \\ \hline
 \textbf{Origin}      & The origin airport or station for the timetable      & Integer                      & Yes               & Yes          \\ \hline
@@ -47,7 +47,7 @@ Represents a SFN timetable for the year ahead.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\begin{tabular}{|p{2.5cm}|p{4cm}|p{2.5cm}|p{2cm}|p{1.2cm}|}
 \hline
 \textbf{Field}                           & \textbf{Description}                               & \textbf{Data Type}      & \textbf{Required} & \textbf{Key} \\ \hline
 \textbf{Marketing Carrier}               & The ID of the carrier that is marketing the flight & Integer                 & Yes               & Yes          \\ \hline
@@ -64,7 +64,7 @@ A Timetable Series Item represents a specific configurations of operating carrie
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\begin{tabular}{|p{2.5cm}|p{4cm}|p{2.5cm}|p{2cm}|p{1.2cm}|}
 \hline
 \textbf{Field}                           & \textbf{Description}                                                                           & \textbf{Data Type}            & \textbf{Required} & \textbf{Key} \\ \hline
 \textbf{Operating Carrier}               & The ID of the administrating operating Carrier                                                 & Integer                       & Yes               & Yes          \\ \hline
@@ -93,12 +93,12 @@ A Date Set represents a start date and day of week pattern for a given Timetable
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4.7cm}|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{2cm}|}
+\begin{tabular}{|p{2.5cm}|p{4.7cm}|p{3cm}|p{2cm}|}
 \hline
-\textbf{Field}        & \textbf{Description}                                                                                  & \textbf{Data Type}              & \textbf{Required} \\ \hline
-\textbf{Start Date}   & The start date that this set is applicable from                                                       & String (date format YYYY-MM-DD) & Yes               \\ \hline
-\textbf{Data Sources} & The source(s) of the timetable data                                                                   & Array of sources (Enun)         & Yes               \\ \hline
-\textbf{Availability} & A set of offsets indicating the dates that the associated series is available (up to 13 months ahead) & Array of week days (Enum)       & Yes               \\ \hline
+\textbf{Field}        & \textbf{Description}                                                          & \textbf{Data Type}              & \textbf{Required} \\ \hline
+\textbf{Start Date}   & The start date that this set is applicable from                               & String (date format YYYY-MM-DD) & Yes               \\ \hline
+\textbf{Data Sources} & The source(s) of the timetable data                                           & Array of sources (Enun)         & Yes               \\ \hline
+\textbf{Availability} & A set of offsets indicating the dates that the associated series is available & Array of week days (Enum)       & Yes               \\ \hline
 \end{tabular}
 \caption{Single Flight Number Timetable Date set fields}
 \label{sfn-date-set}
@@ -169,7 +169,7 @@ The user searches model has been simplified and a lot of fields from the origina
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\begin{tabular}{|p{2.5cm}|p{4cm}|p{2.5cm}|p{2cm}|p{1.2cm}|}
 \hline
 \textbf{Field}       & \textbf{Description}                         & \textbf{Data Type}     & \textbf{Required} & \textbf{Key} \\ \hline
 \textbf{Origin}      & The origin airport or station IATA code      & String                 & Yes               & Yes          \\ \hline
@@ -183,7 +183,7 @@ The user searches model has been simplified and a lot of fields from the origina
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{1.2cm}|}
+\begin{tabular}{|p{2.5cm}|p{4cm}|p{2.5cm}|p{2cm}|p{1.2cm}|}
 \hline
 \textbf{Field} & \textbf{Description}                           & \textbf{Data Type} & \textbf{Required} & \textbf{Key} \\ \hline
 \textbf{Date}  & Date for the leg that was searched             & String             & Yes               & Yes          \\ \hline
