@@ -1,4 +1,4 @@
-rm main.pdf
+rm main*.pdf
 pdflatex main
 bibtex main
 pdflatex main
@@ -17,8 +17,9 @@ rm *.out
 rm *.bbl
 rm *.bcf
 rm *.blg
-rm *-blx.aux
+rm *-blx.auxs
 rm *-blx.bib
 rm *.run.xml
-#open -a /Applications/Preview.app main.pdf
-open main.pdf
+DATE=`date +%s`
+mv main.pdf main$DATE.pdf
+open main$DATE.pdf

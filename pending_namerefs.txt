@@ -1,0 +1,18 @@
+Pending namerefs:
+
+chapter05.tex
+    \nameref{fop-data-transformations}
+    point to flights offer pipeline implementation data transformation
+
+
+chapter06.tex
+    \nameref{gson}
+    point to explanation to Gson library
+
+    \nameref{scala_aws}
+    point to explanation to Scala AWS SDK
+
+    \nameref{boto3}
+    point to boto3 (implementation)
+
+

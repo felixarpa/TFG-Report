@@ -1,28 +1,38 @@
-% Chapter 4: Stakeholders
+%----------------------------------
+% CHAPTER 4: Requirements analysis
+%----------------------------------
 
-\chapter{Stakeholders}
+\chapter{Requirements analysis}
 
 \label{chapter04}
 
+%-----------------
+%   SECTION 4.1
+%-----------------
+
+\section{Stakeholders}
+
 Initially it seemed difficult to find stakeholders and actors in these project apart from the providers. It is not a tool for the user of \company.
 \\\\
-After talking with the squad Lead and then the Product Own of \squad\ a lot of stakeholders appeared: DeLorean squad, Marketing Automation squad, Data tribe, etc. Each of these stakeholders has different use cases and the project became very interesting for a considerable part of \company.
+After talking with the squad lead and then the product owner of DeLorean a lot of stakeholders appeared: DeLorean squad, Marketing Automation squad, Data tribe, etc. Each of these stakeholders has different use cases and the project became very interesting for a considerable part of \company.
 
-\section{DeLorean squad} \label{dlr}
+\subsection{DeLorean squad} \label{dlr}
 
 DeLorean's Single Flight Number service, also known as \textit{Timetable SFN Service}, provides all the \textbf{current} flights. This is a little bit of a problem when trying to get historical data because Timetable SFN Service does not provide past flights information, it is always \textbf{up-to-date}. In order to get this data it is needed to go one step back in the whole DeLorean data processing: \textit{Timetable Pipeline}.
 \\\\
-The \thesistitle must look old versions of the file created by the \textit{Timetable Pipeline} to get older routes. Then, \squad\ is interested in the \thesistitle because it will be using Pipeline's data.
+The \thesis\ must look old versions of the file created by the \textit{Timetable Pipeline} to get older routes. Then, \squad\ is a \thesis\ stakeholder because it will be using its Pipeline's data.
 
-\subsection{Product Owner} \label{product_owner}
+\subsubsection*{Product Owner} \label{product_owner}
 
-\textbf{Jen Agerton} is the Product Owner of DeLorean squad. She realized that the \thesistitle is very useful for other squads like \nameref{mas} and providers (air carrier companies).
+\textbf{Jen Agerton} is the Product Owner of DeLorean squad. She realized that the \thesis\ is very useful for other squads like \nameref{mas} and providers (air carrier companies). Apart from being the \squad\ product owner, she is also in charge of the negotiation with providers and airlines. The comparison of offer and demand is very useful to find user trends and can help airlines when scheduling flights.
 
-\subsection{DeLorean's squad Lead}
+\subsubsection*{DeLorean's squad Lead}
 
-\textbf{Francisco López} is also the supervisor of this project. We both had the initial idea for this project. He saw an opportunity for the future (after project's delivery) orienting the \thesistitle for Machine Learning purpose: The information that the comparison stores is very useful for constructed routes.
+\textbf{Francisco López} and I had the initial idea for this project. He saw an opportunity for the future (after project's delivery) orienting the \thesis\ for Machine Learning purpose: The information that the comparison server provide is very useful for constructed routes\footnote{combination of two SFN }.
+\\\\
+Looking at the evolution of timetables and user demand, \squad\ could make some assumption when combining routes to create constructed routes.
 
-\section{Marketing Automation squad} \label{mas}
+\subsection{Marketing Automation squad} \label{mas}
 
 Marketing Automation squad enables scalable growth by automating workflows, and the collection of insightful data. They have three main goals:
 
@@ -32,28 +42,176 @@ Marketing Automation squad enables scalable growth by automating workflows, and 
   \item Budget process automation
 \end{itemize}
 
-The \thesistitle will be very useful for the first goal. The data provided by the Heatmat has high value in marketing decisions. Looking at historical data, \nameref{mas} could post an advertisement about trend routes in a specific time of the year.
+The \thesis\ will be very useful for the first goal. The data provided by the comparison has high value in marketing decisions. Looking at historical data, \nameref{mas} could post an advertisement about trend routes in a specific time of the year.
 
-\section{Data tribe}
+\subsection{Data tribe}
 
-In Data tribe, State Machine squad captures the user actions, so they know where the user gets stuck or if they finally reach the provider of the flight. Other squads like Clan A and Clan B just gets users queries in flights, hotels and car hiring. The second data source of the \thesistitle (user requests and queries) will be obtained from these squads.
+In Data tribe, State Machine squad captures the user actions, so they know where the user gets stuck or if they finally reach the provider of the flight. Other squads like Clan A and Clan B just gets users queries in flights, hotels and car hiring. The second data source of the \thesis\ (user searches and queries) will be obtained from these squads.
 
-\section{Other \company\ developers}
+\subsection{Other \company\ developers}
 
-Last but not least, a new service will appear in \company, all developers will be able to use it and build software using the \thesistitle's compared data. For instance, it can be used as a training for a complex Machine Learning\cite{machine_learning_coursera}.
+Last (in \company) but not least, a new service will appear in the company, all developers will be able to use it and build software using the \thesis's data. For instance, it can be used as a training for a complex Machine Learning\cite{machine_learning_coursera}.
 \\\\
 The server Application Program Interface, used by the Web UI to visualize all data, will be public inside \company. This and all the documentation will be very helpful for developers.
 
-\section{OAG}
+\subsection{OAG} \label{sh_oag}
 
-OAG is a company that collects all logistic flights information. \squad reads data from them, it is the main provider of information regarding routes. They are the world's largest network of air travel data to provide accurate, timely, actionable digital information and applications to the world's airlines, airports, government agencies and travel-related service companies\cite{oag}.
+OAG is a company that collects all logistic flights information. \squad\ reads data from them, it is the main provider of information regarding routes. They are the world's largest network of air travel data to provide accurate, timely, actionable digital information and applications to the world's airlines, airports, government agencies and travel-related service companies\cite{oag}.
 
-\section{Providers}
+\subsection{Providers} \label{providers}
 
-In the future, providers could take profit from \thesistitle comparison. Companies will be able to know which of their routes or airports work better with user tendencies, they will be able to improve the flights service and make it more efficient, reducing number of flights in \textit{non-profitable} routes. They will also know which are the best places to invest looking at \textit{over-requested} airports.
+In the future, providers could take profit from \thesis. Companies will be able to know which of their routes or airports work better with user tendencies, they will be able to improve the flights service and make it more efficient, reducing number of flights in \textit{non-profitable} routes. They will also know which are the best places to invest looking at \textit{over-requested} routes.
 
-\section{Traveler}
+\subsection{Traveler}
 
-\company users are one of the main sources of information. Without them, the comparison cannot be made. The results of the comparison can also help them, not directly, but if providers somehow manage flights and routes following the \thesistitle results, the traveler experience will improve.
+\company users are one of the main sources of information. Without them, the comparison cannot be made. The results of the comparison can also help them, not directly, but if providers somehow manage flights and routes following the \thesis\ results, the traveler experience will improve.
+
+%-----------------
+%   SECTION 4.2
+%-----------------
+
+\section{Functional requirements}
+
+\thesis\ has a lot of functional requirements, features or functionalities that define this software usage. 
+
+\begin{enumerate}
+    \item \textbf{Search availability values by origin, destination, month and year}: Let the user of the \thesis\ search available flights evolution by date, for a given route (origin and destination), month and year of the flight.
+    \\
+    \item \textbf{Search searches values by origin, destination, month and year}: Same as feature \#1, but for user searches instead of available flights.
+    \\
+    \item \textbf{Search multiple availability values}: Be able to search and show multiple availability values for different flights in the same chart, easing the comparison between both queries. For example: \textit{Route A-B in August 2018 shows more availability than route A-C in August 2018 from January to March, but A-C has more availability than A-B from April until today.}
+    \\
+    \item \textbf{Search multiple searches values}: Be able to query and display multiple user searches values for different routes in the same chart, easing the comparison between both queries. For example: \textit{Route A-B in August 2017 shows more searches than route A-B in December 2017 from January to June.}
+    \\
+    \item \textbf{Search multiple mixed values}: Enable comparison between availability and searches as well. Search and display the comparison in the chart.
+    \\
+    \item \textbf{Add new query to chart}: Search for offer or demand (features \#1 or \#2) and display the result in the chart.
+    \\
+    \item \textbf{Remove query from chart}: Remove data from the chart, stop displaying an specific query's data.
+    \\
+    \item \textbf{Historical data API}: Enable an endpoint where developers can get historical data for a given route, month, year and source (available flights and user searches).
+\end{enumerate}
+
+%-----------------
+%   SECTION 4.3
+%-----------------
+
+\section{Non-functional requirements}
+
+Apart from the features, the \thesis\ also need to satisfy other requirements in terms of usability, latency, precision and more.
+
+\begin{enumerate}
+    \item \textbf{Usability}: The final user will be focused on the data that the \thesis\ will serve, so the user cannot be distracted or annoyed by the website usage.
+    \\
+    \item \textbf{Time availability}: The data should be available at any time, 24 hours per day, 7 days a week.
+    \\
+    \item \textbf{Usage availability}: This tool must be only available for \company\ employees, for now; and providers that are interested and \company\ agreed to give them access. That is why the endpoint will only be accessible from \company\ VPN\cite{palo_alto_networks}.
+    \\
+    \item \textbf{Speed and latency}: The application will have a lot of data to show, but the the charts to load cannot take much time or the comparisons will be slow, maybe annoying and could confuse the user.
+    \\
+    \item \textbf{Reliability}: A loss in historical data can be catastrophic, users could make wrong decisions because of not reliable data.
+    \\
+    \item \textbf{Scalability}: Every day, the amount of data of the application increases by one million records at least. The system must be able to process all this data, store it and serve it with no problem and with any notable difference from the first day, until the last one.
+    \\
+    \item \textbf{Maintainability}: The code can adapt to changes easily, user searches and flights models may change in the future, the code must adapt to these changes.
+\end{enumerate}
+
+%-----------------
+%   SECTION 4.4
+%-----------------
+
+\section{User stories}
+
+Instead of use cases, the requirements will be defined by user stories. Usually use cases are more specific, but user stories often work better for agile development.
+\\\\
+Since a use case is a description of interactions between one or more actors and the application, a user story focus in what the customer will actually do with the system.
+\\\\
+User stories will follow the following format: \textit{As an [actor] I want [action] so that [achievement]}. Stories will also have an acceptance criteria, a list of conditions that must be fully satisfied in order to the story be completed.
+
+\subsection*{Story \#1}
+
+\begin{displayquote}
+As a \nameref{mas} member I want to compare availability of two or more routes in a specific month so that I can guess which is the most common route to travel with airlines.
+\end{displayquote}
+
+\subsubsection*{Acceptance criteria}
+
+\begin{enumerate}
+    \item User can execute at least two queries in a Web UI.
+    \item The website displays a line chart with the amount of flights available by date.
+    \item The chart shows a clear difference between different queries.
+    \item The user can remove or add new routes.
+\end{enumerate}
+
+\subsection*{Story \#2}
+
+\begin{displayquote}
+As a \nameref{mas} member I want to compare searches of two or more routes in a specific month so that I can guess which is the most desired route by travelers.
+\end{displayquote}
+
+\subsubsection*{Acceptance criteria}
+
+\begin{enumerate}
+    \item User can execute at least two queries in a Web UI.
+    \item The website displays a line chart with the amount of searches by date.
+    \item The chars shows a clear difference between different queries.
+    \item The user can remove or add new routes.
+\end{enumerate}
+
+\subsection*{Story \#3}
+
+\begin{displayquote}
+As a \nameref{mas} member I want to compare availability and searches of one route in a specific month so that I can see if it is over-requested or non-profitable.
+\end{displayquote}
+
+\subsubsection*{Acceptance criteria}
+
+\begin{enumerate}
+    \item User can execute two queries in a Web UI.
+    \item The website displays a line chart with different results.
+    \item The chars shows a clear difference between availability query and demand query.
+\end{enumerate}
+
+\subsection*{Story \#4}
+
+\begin{displayquote}
+As a \company\ developer I want to get a big amount of historical data from flights availability so that I can develop complex Deep Learning software.
+\end{displayquote}
+
+\subsubsection*{Acceptance criteria}
+
+\begin{enumerate}
+    \item The developer has an API endpoint.
+    \item The data structure is simple.
+    \item The data has some well-known format.
+\end{enumerate}
+
+\subsection*{Story \#5}
+
+\begin{displayquote}
+As a \company\ developer I want to get a big amount of historical data from user searches so that I can develop complex Deep Learning software.
+\end{displayquote}
+
+\subsubsection*{Acceptance criteria}
+
+\begin{enumerate}
+    \item The developer has an API endpoint.
+    \item The data structure is simple.
+    \item The data has some well-known format.
+\end{enumerate}
+
+\subsection*{Story \#6}
+
+\begin{displayquote}
+As a airline provider of \company\ I want to see the evolution of demand so that I can schedule flights properly depending on user demand.
+\end{displayquote}
+
+\subsubsection*{Acceptance criteria}
+
+\begin{enumerate}
+    \item The website shows data readable for humans.
+    \item The data is displayed by date.
+    \item The user knows what he/she is seeing.
+\end{enumerate}
 
 
