@@ -248,7 +248,7 @@ The flight offer data pipeline reads timetables from \squad's ingest pipeline, s
 \\\\
 \squad's Ingest Pipeline writes all the timetables in its \nameref{s3} bucket in very JSON\cite{json} alike format. \nameref{apache_spark} and the components of \squad\ that read routes from the result file line by line, each of those lines is a Unified Route. Luckily when Apache Spark reads a file i creates an RDD of Strings, one record per line; so when reading \squad's file, it will get an RDD of Unified Routes in JSON\cite{json} format.
 \\\\
-For all data processing, the pipeline is split in well-defined stages. Each stage is a \textbf{Singleton}\footnote{Design pattern explained in \nameref{appendix_b} on page \pageref{appendix_b}.}: This pattern ensures a class only has one instance, and provides a global point of access to it.
+For all data processing, the pipeline is split in well-defined stages. Each stage is a \textbf{Singleton}\footnote{Design pattern explained in \nameref{appendix_b} on page \pageref{appendix_b}.} object: This pattern ensures a class only has one instance, and provides a global point of access to it.
 \\\\
 All stages have a name to be identified and a function \texttt{run} that executes the Spark transformations and actions needed to complete its purpose. The Available Flights Pipeline is composed by six stages grouped in two \textit{sub-pipelines}:
 
@@ -419,9 +419,9 @@ Another problem found is that as more data you request, more time it gets to fin
 
 Once all the data is processed every day and stored into \nameref{s3}, it has to be served in an HTTP\cite{http} API.
 \\\\
-The Comparison Servie's API provides two endpoints, one for the comparison and another one for a single source request (flights or searches)\footnote{The \textit{environment} field can be \texttt{sandbox} or \texttt{prod}. Learn more about those environments in section \nameref{environments} on page \pageref{environments}.}. The main class, API Handler, execute a function when the endpoint is queried and uses an AWS \textbf{Adapter}\footnote{Design pattern explained in \nameref{appendix_b} on page \pageref{appendix_b}.} that is directly connected to \nameref{boto3}. The API Handler returns a set of records in JSON format.
+The Comparison Servie's API provides two endpoints, one for the comparison and another one for a single source request (flights or searches)\footnote{The \textit{environment} field can be \texttt{sandbox} or \texttt{prod}. Learn more about those environments in section \nameref{environments} on page \pageref{environments}.}. The main class, API Handler, execute a function when the endpoint is queried and uses an AWS Adapter that is directly connected to \nameref{boto3}. The API Handler returns a set of records in JSON format.
 \\\\
-The Adapter converts the \nameref{boto3} interface into another interface that the API Handler expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
+The \textbf{Adapter}\footnote{Design pattern explained in \nameref{appendix_b} on page \pageref{appendix_b}.} converts the \nameref{boto3} interface into another interface that the API Handler expects. Adapter lets both classes work together that could not otherwise because of incompatible interfaces.
 
 \begin{figure}[H]
 \centering
